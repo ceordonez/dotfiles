@@ -1,0 +1,682 @@
+"
+"
+" Neovim configuration file
+" Autor: Cesar Ordonez
+"
+"----------------------------------------------------------------------
+" Pluggins
+"----------------------------------------------------------------------
+"{{{
+call plug#begin('~/.vim/plugged')
+" Ultisnips
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+" Rainbow parentheses
+Plug 'luochen1990/rainbow', { 'for': 'python' }
+" vim-Grammarous
+Plug 'rhysd/vim-grammarous'
+" Autoclose (autocloses parenthesis)
+Plug 'Townk/vim-autoclose'
+" Nord colorscheme
+Plug 'arcticicestudio/nord-vim'
+" Seoul256 color theme
+Plug 'junegunn/seoul256.vim'
+" Indent text object
+Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
+" Fix white spaces at end of lines
+Plug 'bronson/vim-trailing-whitespace'
+" Vim indent guides (colors!)
+Plug 'nathanaelkane/vim-indent-guides'
+" ALE
+Plug 'dense-analysis/ale'
+" COC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Better file browser
+Plug 'preservim/nerdtree'
+" Asyncrun
+Plug 'skywind3000/asyncrun.vim'
+" Julia support
+Plug 'JuliaEditorSupport/julia-vim'
+" Vim-Airline
+Plug 'bling/vim-airline'
+" vim-pandoc: Pandoc support
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+" Latex
+Plug 'lervag/vimtex', {'for': 'tex'}
+" Latex Ultisnips
+Plug 'gillescastel/latex-snippets'
+call plug#end()
+"}}}
+
+"----------------------------------------------------------------------
+" Latex options (I need this or nothing works... but don't ask why :/)
+"----------------------------------------------------------------------
+"{{{
+let g:tex_flavor='latex'
+filetype plugin on
+syntax on
+
+"let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
+" Never Forget, To set the default viewer:: Very Important
+let g:Tex_ViewRule_pdf = 'zathura'
+let g:vimtex_view_method='zathura'
+"}}}
+
+"----------------------------------------------------------------------
+" Options and mappings
+"----------------------------------------------------------------------
+"{{{{{{
+set title           " Toggle title on
+set titlestring=%t%(\ %M%)%(\ %y%)  " Set the title string
+set scrolloff=3     " When scrolling, keep cursor 3 lines away from screen border
+set autoread        " Files are read as soon as they are changed
+set noswapfile      " Don't use swapfile for the buffers
+set noerrorbells    " Don't show error messages
+set visualbell      " Set visual bell instead of beeping
+set nobackup        " Don't use backup files
+set nowritebackup
+set encoding=utf-8  " Set the character encoding to utf-8
+set foldmethod=marker   " Set the default folding method
+set cursorline      " Highlight the current line
+set breakindent showbreak=..    " Linebreaks with indentation
+set linebreak
+set hidden          " Change buffer without saving
+set expandtab       " Use spaces to replace tabs
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for
+set softtabstop=4   " Number of spaces that a <Tab> counts for on editing operations
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set virtualedit=block   " Allow virtual editing in Visual block mode
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.aux,*.toc    " Ignore some file extensions
+set laststatus=2    " Always show status bar
+set incsearch       " Incremental search
+set hlsearch        " Highlighted search results
+set nu              " Line numbers
+set diffopt+=vertical " Set vertical split as default for diff
+let $PYTHONUNBUFFERED=1 " See python real-time output
+
+" Change direcotry to folder of opened file
+cd %:p:h
+
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=0 concealcursor=niv
+endif
+
+" Visual selection automatically copies to the clipboard
+set clipboard+=unnamedplus
+nnoremap y "+y
+vnoremap y "+y
+snoremap y "+y
+nnoremap <S-Insert> "+p
+" More space to write! :)
+set guioptions-=m  " Remove menu bar
+set guioptions-=T  " Remove toolbar
+
+" Edit commands for the navifation in help documents
+nnoremap <C-9> <C-]>
+
+" For the matchup plugin
+let g:matchup_surround_enabled = 1
+
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+"}}}}}}
+"----------------------------------------------------------------------
+" Colors for GVim
+"----------------------------------------------------------------------
+"{{{
+if has('gui_running')
+    let g:seoul256_background=234
+    colorscheme seoul256
+elseif has('nvim')
+    colorscheme nord
+endif
+"}}}
+"----------------------------------------------------------------------
+" Snippets configuration
+"----------------------------------------------------------------------
+"{{{
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsListSnippets="<c-l>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[
+		\'UltiSnips',
+		\$HOME.'/.vim/plugged/vim-snippets/UltiSnips',
+        \$HOME.'/.vim/plugged/latex-snippets',
+		\]
+" Set the smart function definition to use numpy style for docstrings
+let g:ultisnips_python_style="numpy"
+let g:UltisnipsUsePythonVersion = 3
+"}}}
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+"----------------------------------------------------------------------
+" Mappings
+"----------------------------------------------------------------------
+"{{{
+" Mapping to Open Vimrc
+" Map to stop highlighting of last search
+nnoremap <leader>pp :nohlsearch<cr>
+
+" Folding remaping
+nnoremap <space> za
+vnoremap <space> zf
+
+" Map <Esc> to Shift-Space. Its more confortable
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
+
+inoremap <M-Space> <Esc>
+vnoremap <M-Space> <Esc>
+snoremap <M-Space> <Esc>
+
+" Mapping to Open Vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" ...and to Source Vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Movements
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+" Move to the next buffer
+nmap tn :bnext<CR>
+" Move to the previous buffer
+nmap tp :bprevious<CR>
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+" Show pending tasks list
+noremap <F2> :TaskList<CR>
+
+"}}}
+"----------------------------------------------------------------------
+" Grammarous configuration
+"----------------------------------------------------------------------
+"{{{
+" Setting for grammar check (Grammarous)
+let g:grammarous#disabled_rules = {
+            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
+            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
+            \ }
+" Use vim spellang
+let g:grammarous#use_vim_spelllang = 1
+"}}}
+"----------------------------------------------------------------------
+" Ale configurations
+"----------------------------------------------------------------------
+" {{{ "
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+            \   'python': ['pylint'],
+            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
+            \   'fortran': ['gcc'],
+            \   'markdown': ['alex', 'proselint'],
+            \   'javascript': ['javac'],
+            \   'dockerfile': ['hadolint'],
+            \}
+
+let g:ale_fixers = {
+            \   'python': ['black', 'isort'],
+            \   'tex': ['remove_trailing_lines', 'latexindent'],
+            \   'markdown': ['prettier'],
+            \   'javascript': ['prettier'],
+            \   'bib': ['bibclean'],
+            \   'json': ['prettier'],
+            \   'vim': ['trim_whitespace'],
+            \}
+
+" call deoplete#custom#source('ale', 'rank', 999)
+
+" Define map for the Fix function
+noremap <LocalLeader>= :ALEFix<cr>
+
+" Change default symbols for ALE
+let g:ale_sign_error = ">>"
+let g:ale_sign_warning = ">>"
+" }}} "
+"----------------------------------------------------------------------
+" Automatically close autocompletion window
+"----------------------------------------------------------------------
+"{{{
+augroup autocompl_window
+    autocmd!
+    autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+augroup END
+"}}}
+"----------------------------------------------------------------------
+" Rainbow parentheses
+"----------------------------------------------------------------------
+"{{{
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+            \'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
+            \'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \'operators': '_,_',
+            \'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \'separately': {
+            \    '*': {},
+            \    'tex': {
+            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \    },
+            \    'lisp': {
+            \        'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
+            \    },
+            \    'vim': {
+            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \    'html': {
+            \        'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \    'css': 0,
+            \   }
+            \}
+"}}}
+"----------------------------------------------------------------------
+" Quick run
+"----------------------------------------------------------------------
+"{{{
+augroup SPACEVIM_ASYNCRUN
+    autocmd!
+    " Automatically open the quickfix window
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
+augroup END
+
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+        exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+        exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+        exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+        exec "AsyncRun python %:p"
+    elseif &filetype == 'julia'
+        exec "AsyncRun julia %:p"
+    endif
+endfunction
+"}}}
+"----------------------------------------------------------------------
+" NERDTree (better file browser) toggle
+map <F3> :NERDTreeToggle<CR>
+" Ignore files on NERDTree
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+"----------------------------------------------------------------------
+" Julia
+autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
+autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
+let latex_to_unicode_tab = 0
+"----------------------------------------------------------------------
+"COC configurations
+"----------------------------------------------------------------------
+" {{{ "
+" Install all coc-extensions
+let g:coc_global_extensions = [
+            \ 'coc-texlab',
+            \ 'coc-python',
+            \ 'coc-tsserver',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-ultisnips',
+            \ 'coc-yank',
+            \ 'coc-lists',
+            \ 'coc-git',
+            \ 'coc-json',
+            \ 'coc-vimlsp',
+            \ 'coc-yaml',
+            \ 'coc-css',
+            \ 'coc-markdownlint',
+            \ 'coc-omnisharp'
+            \ ]
+"
+"" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use Tab and S-Tab to navigate completion menu
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Using CocList
+" Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"
+" Call CocCommands
+nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
+
+" Use <C-l> for trigger snippet expand.
+" imap <C-k> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-n> <Plug>(coc-snippets-expand-jump)
+
+autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
+            \ 'python.execInTerminal')<CR>
+
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
+" Correct highlight of comments in json files
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" }}} "
+"----------------------------------------------------------------------
+" Python configuration
+"----------------------------------------------------------------------
+"{{{
+filetype on
+syntax on
+let python_highlight_all=1
+
+let g:python_host_prog  = $HOME.'/.virtualenvs/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.virtualenvs/neovim3/bin/python3'
+"}}}
+"----------------------------------------------------------------------
+" Tablength exceptions
+"----------------------------------------------------------------------
+"{{{
+augroup spell_group
+    autocmd!
+    autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
+    autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
+    autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
+augroup END
+
+augroup file_type
+    autocmd!
+    autocmd FileType python AirlineRefresh
+    autocmd FileType python setlocal
+                \ shiftwidth=4
+                \ tabstop=4
+                \ softtabstop=4
+                \ expandtab
+    autocmd FileType html setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType htmldjango setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType javascript setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType tex AirlineRefresh
+    autocmd FileType tex setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
+    autocmd FileType markdown setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
+    autocmd FileType fortran setlocal
+                \ shiftwidth=3
+                \ tabstop=3
+                \ softtabstop=3
+                \ expandtab
+    autocmd FileType yaml setlocal
+                \ ts=2
+                \ sts=2
+                \ sw=2
+                \ expandtab
+augroup END
+
+"}}}
+"----------------------------------------------------------------------
+" Powerline configurations
+"----------------------------------------------------------------------
+"{{{
+"let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+if has('win32')
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h10
+elseif has('vim')
+    set guifont=Noto\ Mono\ for\ Powerline
+elseif has('nvim')
+    " set guifont=Fira\ Code:h11
+    set guifont=FuraCode\ Nerd\ Font\ Medium:h11
+endif
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+" Cooperation with Asyncrun
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+"}}}
+"----------------------------------------------------------------------
+" Tablength exceptions
+"----------------------------------------------------------------------
+"{{{
+augroup spell_group
+    autocmd!
+    autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
+    autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
+    autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
+augroup END
+
+augroup file_type
+    autocmd!
+    autocmd FileType python AirlineRefresh
+    autocmd FileType python setlocal
+                \ shiftwidth=4
+                \ tabstop=4
+                \ softtabstop=4
+                \ expandtab
+    autocmd FileType html setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType htmldjango setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType javascript setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType tex AirlineRefresh
+    autocmd FileType tex setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
+    autocmd FileType markdown setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
+    autocmd FileType fortran setlocal
+                \ shiftwidth=3
+                \ tabstop=3
+                \ softtabstop=3
+                \ expandtab
+    autocmd FileType yaml setlocal
+                \ ts=2
+                \ sts=2
+                \ sw=2
+                \ expandtab
+augroup END
+
+"}}}
+"----------------------------------------------------------------------
+" Vim-Pandoc
+"----------------------------------------------------------------------
+"{{{
+" let g:pandoc#modules#disabled = ["command"]
+let g:pandoc#syntax#conceal#use = 0
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+"
+
+let g:pandoc#command#custom_open = "MyPandocOpen"
+
+function! MyPandocOpen(file)
+    let file = shellescape(fnamemodify(a:file, ':p'))
+    let file_extension = fnamemodify(a:file, ':e')
+    if file_extension is? 'pdf'
+        if !empty($PDFVIEWER)
+            return expand('$PDFVIEWER') . ' ' . file
+        elseif executable('zathura')
+            return 'zathura ' . file
+        elseif executable('mupdf')
+            return 'mupdf ' . file
+        endif
+    elseif file_extension is? 'html'
+        if !empty($BROWSER)
+            return expand('$BROWSER') . ' ' . file
+        elseif executable('firefox')
+            return 'firefox ' . file
+        elseif executable('chromium')
+            return 'chromium ' . file
+        endif
+    elseif file_extension is? 'odt' && executable('okular')
+        return 'okular ' . file
+    elseif file_extension is? 'epub' && executable('okular')
+        return 'okular ' . file
+    else
+        return 'xdg-open ' . file
+    endif
+endfunction
+
+"}}}
+"----------------------------------------------------------------------
+" Notes with vimwiki
+"----------------------------------------------------------------------
+"{{{
+let g:vimwiki_list = [{ 'path': '~/Notes/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+autocmd FileType vimwiki set ft=markdown
+
+let g:colors_name = get(g:, 'colors_name', 'default')
+let s:saved_colorscheme = g:colors_name
+function! s:check_colorscheme_on_bufenter() abort
+    if &ft == 'vimwiki' && g:colors_name != 'solarized8_high'
+        let s:saved_colorscheme = g:colors_name
+        set background=light
+        colorscheme solarized8_high
+    elseif &ft != 'vimwiki' && g:colors_name == 'solarized8_high'
+        exe 'colorscheme '.s:saved_colorscheme
+    endif
+endfunction
+
+augroup WikiColorScheme
+    au!
+    au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
+augroup END"}}}

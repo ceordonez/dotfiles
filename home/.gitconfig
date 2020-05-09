@@ -1,0 +1,5 @@
+[user]
+	name = César Ordoñez
+	email = ceordonezv@gmail.com
+[core]
+	editor = nvim
