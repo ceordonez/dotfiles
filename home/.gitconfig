@@ -3,3 +3,8 @@
 	email = ceordonezv@gmail.com
 [core]
 	editor = nvim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
