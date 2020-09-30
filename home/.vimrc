@@ -8,6 +8,8 @@
 "----------------------------------------------------------------------
 "{{{
 call plug#begin('~/.vim/plugged')
+" Convert latex expressions into unicode equivalents
+Plug 'joom/latex-unicoder.vim'
 " Ultisnips
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -37,8 +39,7 @@ Plug 'preservim/nerdtree'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Julia support
-Plug 'JuliaEditorSupport/julia-vim'
-" Vim-Airline
+Plug 'JuliaEditorSupport/julia-vim' " Vim-Airline
 Plug 'bling/vim-airline'
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
@@ -47,9 +48,20 @@ Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Latex Ultisnips
 Plug 'gillescastel/latex-snippets'
+" Easy Aling
+Plug 'junegunn/vim-easy-align'
+" Tmux integration
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 "}}}
 
+"----------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+"----------------------------------------------------------------------
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 "----------------------------------------------------------------------
 " Latex options (I need this or nothing works... but don't ask why :/)
 "----------------------------------------------------------------------
@@ -58,10 +70,12 @@ let g:tex_flavor='latex'
 filetype plugin on
 syntax on
 
-"let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
+" let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/neovim3/bin/nvr'
 " Never Forget, To set the default viewer:: Very Important
-let g:Tex_ViewRule_pdf = 'zathura'
+" let g:Tex_ViewRule_pdf = 'zathura'
 let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+let g:vimtex_fold_manual=1
 "}}}
 
 "----------------------------------------------------------------------
@@ -149,11 +163,11 @@ let g:UltiSnipsListSnippets="<c-l>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+"set runtimepath+=~/.vim/plugged/vim-snippets/UltiSnips
 let g:UltiSnipsSnippetDirectories=[
-		\'UltiSnips',
-		\$HOME.'/.vim/plugged/vim-snippets/UltiSnips',
-        \$HOME.'/.vim/plugged/latex-snippets',
-		\]
+            \$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+            "\'UltiSnips']
+            "\$HOME.'.vim/UltiSnips',
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 let g:UltisnipsUsePythonVersion = 3
@@ -680,3 +694,15 @@ augroup WikiColorScheme
     au!
     au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
 augroup END"}}}
+"----------------------------------------------------------------------
+" Tmux configurations
+"----------------------------------------------------------------------
+"{{{
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+"}}}

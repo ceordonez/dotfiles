@@ -1,5 +1,5 @@
 {
-    "coc.preferences.diagnostic.displayByAle": false,
+    "diagnostic.displayByAle": false,
     "snippets.ultisnips.enable": true,
     "snippets.loadFromExtensions": true,
     "snippets.ultisnips.directories": [
@@ -37,7 +37,6 @@
     "suggest.fixInsertedWord": true,
     "suggest.autoTrigger": "always",
     "coc.source.file.enable": true,
-    "coc.source.vimtex.enable": false,
     "coc.source.around.enable": true,
     "yaml.format.enable": true,
     "yaml.format.bracketSpacing": true,
@@ -68,7 +67,6 @@
     "session.directory": "~/.vim/sessions",
     "yank.highlight.enable": false,
     "yank.enableCompletion": false,
-    "coc.preferences.diagnostics.displayByAle": false,
     "languageserver": {
         "julia": {
             "command": "/usr/bin/julia",

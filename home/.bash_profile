@@ -6,6 +6,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/usr/share/texlive/:$PATH"
 
 # Virtual Env
 export WORKON_HOME=~/.virtualenvs   # Optional
@@ -14,3 +15,9 @@ source ~/.local/bin/virtualenvwrapper.sh
 
 # Digikam incos
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
+. ~/.bash_aliases
+
+. ~/.bashrc
+
+export TERM="xterm-256color"
