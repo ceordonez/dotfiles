@@ -46,12 +46,15 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Latex
 Plug 'lervag/vimtex', {'for': 'tex'}
+", 'commit': 'a69b58b3d29f90d8ffce777bc18d6599e51c4f49'}
 " Latex Ultisnips
 Plug 'gillescastel/latex-snippets'
 " Easy Aling
 Plug 'junegunn/vim-easy-align'
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
+" Indentations
+Plug 'Yggdroot/indentLine'
 call plug#end()
 "}}}
 
@@ -66,7 +69,10 @@ nmap ga <Plug>(EasyAlign)
 " Latex options (I need this or nothing works... but don't ask why :/)
 "----------------------------------------------------------------------
 "{{{
-let g:tex_flavor='latex'
+let g:tex_flavor='pdflatex'
+" let g:vimtex_compiler_engine = 'lualatex'
+" let g:tex_flavor='lualatex'
+" let g:tex_fast='bcpmrsSvV'
 filetype plugin on
 syntax on
 
@@ -75,13 +81,13 @@ syntax on
 " let g:Tex_ViewRule_pdf = 'zathura'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-let g:vimtex_fold_manual=1
+" let g:vimtex_fold_manual=1
 "}}}
 
 "----------------------------------------------------------------------
 " Options and mappings
 "----------------------------------------------------------------------
-"{{{{{{
+"{{{
 set title           " Toggle title on
 set titlestring=%t%(\ %M%)%(\ %y%)  " Set the title string
 set scrolloff=3     " When scrolling, keep cursor 3 lines away from screen border
@@ -109,6 +115,8 @@ set hlsearch        " Highlighted search results
 set nu              " Line numbers
 set diffopt+=vertical " Set vertical split as default for diff
 let $PYTHONUNBUFFERED=1 " See python real-time output
+set list
+set listchars=tab:>-
 
 " Change direcotry to folder of opened file
 cd %:p:h
@@ -140,7 +148,7 @@ let g:matchup_surround_enabled = 1
 
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-"}}}}}}
+"}}}
 "----------------------------------------------------------------------
 " Colors for GVim
 "----------------------------------------------------------------------
@@ -475,7 +483,7 @@ nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-n> <Plug>(coc-snippets-expand-jump)
 
-autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
+autocmd FileType python nnoremap <F5> :call CocActionAsync('runCommand',
             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>

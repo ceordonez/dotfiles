@@ -1,5 +1,5 @@
 [user]
-	name = César Ordoñez
+	name = César Ordóñez
 	email = ceordonezv@gmail.com
 [core]
 	editor = nvim
@@ -8,3 +8,5 @@
 	br = branch
 	ci = commit
 	st = status
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    logrl = log --pretty=format:\"%aN %ad %n  - %s\" --date=short
