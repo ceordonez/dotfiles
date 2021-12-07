@@ -10,3 +10,8 @@
 	st = status
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     logrl = log --pretty=format:\"%aN %ad %n  - %s\" --date=short
+[credential]
+	helper = cache
+[credential "https://git.overleaf.com"]
+	username = ceordonezv@gmail.com
+	helper = cache

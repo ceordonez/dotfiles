@@ -25,3 +25,4 @@ set font "Noto Mono for Powerline 11"
 set guioptions none
 set synctex true
 set synctex-editor-command "nvr --remote-silent %f -c %l"
+map <C-t> toggle_page_mode

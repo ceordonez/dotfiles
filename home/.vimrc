@@ -167,7 +167,7 @@ endif
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsListSnippets="<c-.>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -349,6 +349,9 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
+ " Deactivate conceal in latex (e.g transform latex functions to unicode)
+let g:vimtex_syntax_conceal_disable = 1
+"let g:vimtex_syntax_conceal = {'math_bounds': 0}
 "----------------------------------------------------------------------
 "COC configurations
 "----------------------------------------------------------------------
