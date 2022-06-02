@@ -1,10 +1,14 @@
 {
+    "ltex.additionalRules.motherTongue": "es",
+    "ltex.additionalRules.enablePickyRules": true,
+    "ltex.disabledRules": {"en-US": ["PASSIVE_VOICE","COMMA_PARENTHESIS_WHITESPACE", "MORFOLOGIK_RULE_EN_US"]},
+    "ltex.latex.commands": {"\\tsub{}":"ignore", "\\SI{}{}":"ignore"},
     "diagnostic.displayByAle": false,
     "snippets.ultisnips.enable": true,
     "snippets.loadFromExtensions": true,
     "snippets.ultisnips.directories": [
         "UltiSnips",
-        "~/.vim/plugged/vim-snippets/snippets"
+        "~/.config/nvim/autoload/plugged/vim-snippets/snippets/"
     ],
     // Python
     "python.formatting.provider": "black",

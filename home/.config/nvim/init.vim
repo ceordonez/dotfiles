@@ -1,26 +1,54 @@
 
-set runtimepath^=~/.vim,~/.vim/after
-set packpath+=~/.vim
+" Neovim configuration file
+" Autor: Cesar Ordonez
+"
+" set runtimepath^=~/.vim,~/.vim/after
+" set packpath+=~/.vim
 
+" Although anything in ~/.config/nvim/plugin will automatically be sourced, I find it convenient to individually source config files so as to be able to easily comment out config files that are not needed while leaving them intact.
 
-if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
-    execute "!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-endif
+" GENERAL
+source $HOME/.config/nvim/vim-plugin/plugin.vim
+source $HOME/.config/nvim/general/settings.vim
+
+" TEXT SUPPORT
+source $HOME/.config/nvim/plug-config/vimtex.vim
+source $HOME/.config/nvim/plug-config/rainbow.vim
+source $HOME/.config/nvim/plug-config/ale.vim
+source $HOME/.config/nvim/plug-config/vim-grammarous.vim
+source $HOME/.config/nvim/plug-config/vim-easy-align.vim
+"source $HOME/.config/nvim/plug-config/vim-pandoc.vim
+"source $HOME/.config/nvim/plug-config/languagetool.vim
+
+" FILE MANAGEMENT
+source $HOME/.config/nvim/plug-config/nerdtree.vim
+
+" AUTOCOMPLETE
+source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/ultisnips.vim
+
+" MAPPINGS
+source $HOME/.config/nvim/keys/mappings.vim
+
+" APPEARANCE
+source $HOME/.config/nvim/themes/airline.vim
+source $HOME/.config/nvim/plug-config/goyo.vim
+
+" ADDITIONAL FUNCTIONS
+source $HOME/.config/nvim/plug-config/vim-tmux-navigator.vim
+source $HOME/.config/nvim/plug-config/vimwiki.vim
+
+" PROGRAMMING
+source $HOME/.config/nvim/general/quickrun.vim
+"source $HOME/.config/nvim/plug-config/julia-vim
+
+filetype plugin on
+syntax on
 
 source $HOME/.vimrc
-" Movements in term-mode
 
 " Escape terminal mode with <Esc>
 tnoremap <Esc> <C-\><C-n>
-" Move in any mode with <Alt> + {h,j,k,l}
-" tnoremap <A-h> <C-\><C-n><C-w>h
-" tnoremap <A-j> <C-\><C-n><C-w>j
-" tnoremap <A-k> <C-\><C-n><C-w>k
-" tnoremap <A-l> <C-\><C-n><C-w>l
-" nnoremap <A-h> <C-w>h
-" nnoremap <A-j> <C-w>j
-" nnoremap <A-k> <C-w>k
-" nnoremap <A-l> <C-w>l
 
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor

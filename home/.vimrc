@@ -8,6 +8,8 @@
 "----------------------------------------------------------------------
 "{{{
 call plug#begin('~/.vim/plugged')
+" Vim-wiki"
+Plug 'vimwiki/vimwiki'
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Ultisnips
@@ -46,7 +48,6 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Latex
 Plug 'lervag/vimtex', {'for': 'tex'}
-", 'commit': 'a69b58b3d29f90d8ffce777bc18d6599e51c4f49'}
 " Latex Ultisnips
 Plug 'gillescastel/latex-snippets'
 " Easy Aling
@@ -59,16 +60,17 @@ call plug#end()
 "}}}
 
 "----------------------------------------------------------------------
-" Start interactive EasyAlign in visual mode (e.g. vipga)
+"  " Start interactive EasyAlign in visual mode (e.g. vipga)
 "----------------------------------------------------------------------
-xmap ga <Plug>(EasyAlign)
+vmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
 "----------------------------------------------------------------------
 " Latex options (I need this or nothing works... but don't ask why :/)
 "----------------------------------------------------------------------
-"{{{
+"  "{{{
 let g:tex_flavor='pdflatex'
 " let g:vimtex_compiler_engine = 'lualatex'
 " let g:tex_flavor='lualatex'
@@ -83,7 +85,6 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 " let g:vimtex_fold_manual=1
 "}}}
-
 "----------------------------------------------------------------------
 " Options and mappings
 "----------------------------------------------------------------------
@@ -117,77 +118,17 @@ set diffopt+=vertical " Set vertical split as default for diff
 let $PYTHONUNBUFFERED=1 " See python real-time output
 set list
 set listchars=tab:>-
-
-" Change direcotry to folder of opened file
-cd %:p:h
-
-if (has("termguicolors"))
-    set termguicolors
-endif
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=0 concealcursor=niv
-endif
-
-" Visual selection automatically copies to the clipboard
-set clipboard+=unnamedplus
 nnoremap y "+y
 vnoremap y "+y
 snoremap y "+y
 nnoremap <S-Insert> "+p
+"
 " More space to write! :)
 set guioptions-=m  " Remove menu bar
 set guioptions-=T  " Remove toolbar
 
 " Edit commands for the navifation in help documents
 nnoremap <C-9> <C-]>
-
-" For the matchup plugin
-let g:matchup_surround_enabled = 1
-
-inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-"}}}
-"----------------------------------------------------------------------
-" Colors for GVim
-"----------------------------------------------------------------------
-"{{{
-if has('gui_running')
-    let g:seoul256_background=234
-    colorscheme seoul256
-elseif has('nvim')
-    colorscheme nord
-endif
-"}}}
-"----------------------------------------------------------------------
-" Snippets configuration
-"----------------------------------------------------------------------
-"{{{
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsListSnippets="<c-.>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-"set runtimepath+=~/.vim/plugged/vim-snippets/UltiSnips
-let g:UltiSnipsSnippetDirectories=[
-            \$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
-            "\'UltiSnips']
-            "\$HOME.'.vim/UltiSnips',
-" Set the smart function definition to use numpy style for docstrings
-let g:ultisnips_python_style="numpy"
-let g:UltisnipsUsePythonVersion = 3
-"}}}
-set cmdheight=2
-let g:echodoc_enable_at_startup = 1
-"----------------------------------------------------------------------
-" Mappings
-"----------------------------------------------------------------------
-"{{{
-" Mapping to Open Vimrc
-" Map to stop highlighting of last search
 nnoremap <leader>pp :nohlsearch<cr>
 
 " Folding remaping
@@ -225,8 +166,43 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
-
 "}}}
+
+"----------------------------------------------------------------------
+" Colors for GVim
+"----------------------------------------------------------------------
+"{{{
+if has('gui_running')
+    let g:seoul256_background=234
+    colorscheme seoul256
+elseif has('nvim')
+    colorscheme nord
+endif
+"}}}
+
+"----------------------------------------------------------------------
+" Snippets configuration
+"----------------------------------------------------------------------
+"{{{
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsListSnippets="<c-.>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"set runtimepath+=~/.vim/plugged/vim-snippets/UltiSnips
+let g:UltiSnipsSnippetDirectories=[
+            \$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+            "\'UltiSnips']
+            "\$HOME.'.vim/UltiSnips',
+" Set the smart function definition to use numpy style for docstrings
+let g:ultisnips_python_style="numpy"
+let g:UltisnipsUsePythonVersion = 3
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+"}}}
+
 "----------------------------------------------------------------------
 " Grammarous configuration
 "----------------------------------------------------------------------
@@ -239,6 +215,7 @@ let g:grammarous#disabled_rules = {
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
 "}}}
+
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
@@ -274,6 +251,7 @@ noremap <LocalLeader>= :ALEFix<cr>
 let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
 " }}} "
+
 "----------------------------------------------------------------------
 " Automatically close autocompletion window
 "----------------------------------------------------------------------
@@ -344,7 +322,6 @@ endfunction
 map <F3> :NERDTreeToggle<CR>
 " Ignore files on NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-"----------------------------------------------------------------------
 " Julia
 autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
@@ -374,7 +351,6 @@ let g:coc_global_extensions = [
             \ 'coc-markdownlint',
             \ 'coc-omnisharp'
             \ ]
-"
 "" if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -398,19 +374,11 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -448,7 +416,6 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
-
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
@@ -495,12 +462,13 @@ nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " }}} "
+
+
+"
 "----------------------------------------------------------------------
 " Python configuration
 "----------------------------------------------------------------------
 "{{{
-filetype on
-syntax on
 let python_highlight_all=1
 
 let g:python_host_prog  = $HOME.'/.virtualenvs/neovim2/bin/python'
@@ -561,6 +529,7 @@ augroup file_type
 augroup END
 
 "}}}
+
 "----------------------------------------------------------------------
 " Powerline configurations
 "----------------------------------------------------------------------
@@ -582,61 +551,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-"}}}
-"----------------------------------------------------------------------
-" Tablength exceptions
-"----------------------------------------------------------------------
-"{{{
-augroup spell_group
-    autocmd!
-    autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
-    autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
-    autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
-augroup END
-
-augroup file_type
-    autocmd!
-    autocmd FileType python AirlineRefresh
-    autocmd FileType python setlocal
-                \ shiftwidth=4
-                \ tabstop=4
-                \ softtabstop=4
-                \ expandtab
-    autocmd FileType html setlocal
-                \ shiftwidth=2
-                \ tabstop=2
-    autocmd FileType htmldjango setlocal
-                \ shiftwidth=2
-                \ tabstop=2
-    autocmd FileType javascript setlocal
-                \ shiftwidth=2
-                \ tabstop=2
-    autocmd FileType tex AirlineRefresh
-    autocmd FileType tex setlocal
-                \ shiftwidth=2
-                \ tabstop=2
-                \ softtabstop=2
-                \ expandtab
-    autocmd FileType markdown setlocal
-                \ shiftwidth=2
-                \ tabstop=2
-                \ softtabstop=2
-                \ expandtab
-    autocmd FileType fortran setlocal
-                \ shiftwidth=3
-                \ tabstop=3
-                \ softtabstop=3
-                \ expandtab
-    autocmd FileType yaml setlocal
-                \ ts=2
-                \ sts=2
-                \ sw=2
-                \ expandtab
-augroup END
-
 "}}}
 "----------------------------------------------------------------------
 " Vim-Pandoc
@@ -682,30 +596,6 @@ endfunction
 
 "}}}
 "----------------------------------------------------------------------
-" Notes with vimwiki
-"----------------------------------------------------------------------
-"{{{
-let g:vimwiki_list = [{ 'path': '~/Notes/',
-       \ 'syntax':'markdown', 'ext': '.md' }]
-autocmd FileType vimwiki set ft=markdown
-
-let g:colors_name = get(g:, 'colors_name', 'default')
-let s:saved_colorscheme = g:colors_name
-function! s:check_colorscheme_on_bufenter() abort
-    if &ft == 'vimwiki' && g:colors_name != 'solarized8_high'
-        let s:saved_colorscheme = g:colors_name
-        set background=light
-        colorscheme solarized8_high
-    elseif &ft != 'vimwiki' && g:colors_name == 'solarized8_high'
-        exe 'colorscheme '.s:saved_colorscheme
-    endif
-endfunction
-
-augroup WikiColorScheme
-    au!
-    au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
-augroup END"}}}
-"----------------------------------------------------------------------
 " Tmux configurations
 "----------------------------------------------------------------------
 "{{{
@@ -717,3 +607,8 @@ nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 "}}}
+set nocompatible
+let g:vimwiki_list = [{'path': '~/Dropbox/Cesar/Notes/',
+            \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_markdown_link_ext = 1
+let g:markdown_folding = 1

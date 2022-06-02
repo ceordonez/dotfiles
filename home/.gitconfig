@@ -1,8 +1,6 @@
 [user]
 	name = César Ordóñez
 	email = ceordonezv@gmail.com
-[core]
-	editor = nvim
 [alias]
 	co = checkout
 	br = branch
@@ -10,8 +8,18 @@
 	st = status
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     logrl = log --pretty=format:\"%aN %ad %n  - %s\" --date=short
+    ldiff = difftool -y -t latex
+    wdiff = diff --color-words --ignore-all-space
 [credential]
 	helper = cache
-[credential "https://git.overleaf.com"]
+[credenial "https://git.overleaf.com"]
 	username = ceordonezv@gmail.com
 	helper = cache
+[difftool.latex]
+cmd = latexdiff "$LOCAL" "$REMOTE"
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[difftool.vimdiff]
+    cmd = nvim -d "$LOCAL" "$REMOTE"
