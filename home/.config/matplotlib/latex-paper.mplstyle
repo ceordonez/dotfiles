@@ -1,0 +1,22 @@
+font.size: 8
+text.usetex: True
+font.family: serif
+font.sans-serif: "Computer Modern Roman"
+text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx}
+lines.linewidth: 1
+lines.markerfacecolor: white
+axes.spines.top: False
+axes.spines.right: False
+axes.labelsize: 10
+legend.fontsize: 10
+legend.frameon: False
+xtick.minor.visible: True
+xtick.major.size: 5
+xtick.major.width: 1
+ytick.minor.visible: True
+ytick.major.size: 5
+ytick.major.width: 1
+savefig.dpi: 300
+savefig.format: pdf
+savefig.bbox: tight
+savefig.pad_inches: .1

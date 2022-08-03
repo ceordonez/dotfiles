@@ -1,0 +1,25 @@
+font.size: 6
+text.usetex: True
+font.family: serif
+font.sans-serif: "Computer Modern Roman"
+text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \DeclareSIUnit\permille{\text{\textperthousand}}
+lines.linewidth: 1
+lines.markerfacecolor: white
+lines.markersize: 3.5
+axes.spines.top: False
+axes.spines.right: False
+axes.labelsize: 6
+legend.fontsize: 5
+legend.frameon: False
+xtick.minor.visible: True
+xtick.major.size: 3
+xtick.major.width: 1
+xtick.minor.size: 2
+ytick.minor.visible: True
+ytick.major.size: 3
+ytick.major.width: 1
+ytick.labelsize: 5
+savefig.dpi: 300
+savefig.format: pdf
+savefig.bbox: tight
+savefig.pad_inches: .1
