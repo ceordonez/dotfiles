@@ -32,7 +32,7 @@ source $HOME/.config/nvim/keys/mappings.vim
 
 " APPEARANCE
 source $HOME/.config/nvim/themes/airline.vim
-source $HOME/.config/nvim/plug-config/goyo.vim
+"source $HOME/.config/nvim/plug-config/goyo.vim
 
 " ADDITIONAL FUNCTIONS
 source $HOME/.config/nvim/plug-config/vim-tmux-navigator.vim
@@ -45,7 +45,7 @@ source $HOME/.config/nvim/general/quickrun.vim
 filetype plugin on
 syntax on
 
-source $HOME/.vimrc
+"source $HOME/.vimrc
 
 " Escape terminal mode with <Esc>
 tnoremap <Esc> <C-\><C-n>

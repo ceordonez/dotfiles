@@ -124,8 +124,12 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
-export EDITOR='/snap/bin/nvim'
+export EDITOR='/usr/bin/nvim'
 
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export OMP_NUM_THREADS=1
+
+export WORKON_HOME=~/.virtualenvs   # Optional
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh

@@ -19,6 +19,7 @@ let g:coc_global_extensions = [
             \ 'coc-markdownlint',
             \ 'coc-omnisharp',
             \ 'coc-ltex',
+            \ 'coc-sh',
             \ ]
 "
 

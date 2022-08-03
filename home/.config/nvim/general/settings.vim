@@ -115,6 +115,8 @@ augroup END
 "----------------------------------------------------------------------
 filetype on
 let python_highlight_all=1
-
-let g:python_host_prog  = $HOME.'/.virtualenvs/neovim2/bin/python'
+let g:loaded_python_provider=0
+let g:loaded_ruby_provider=0
+let g:loaded_perl_provider=0
+"let g:python_host_prog  = $HOME.'/.virtualenvs/neovim2/bin/python'
 let g:python3_host_prog = $HOME.'/.virtualenvs/neovim3/bin/python3'
