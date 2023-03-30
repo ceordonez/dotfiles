@@ -1,7 +1,6 @@
 "----------------------------------------------------------------------
 " Powerline configurations
 "----------------------------------------------------------------------
-"{{{
 "let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 if has('win32')
@@ -19,4 +18,3 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-"}}}

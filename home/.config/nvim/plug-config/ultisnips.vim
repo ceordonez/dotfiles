@@ -1,7 +1,6 @@
 "----------------------------------------------------------------------
 " Snippets configuration
 "----------------------------------------------------------------------
-"{{{
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -20,4 +19,3 @@ let g:ultisnips_python_style="numpy"
 let g:UltisnipsUsePythonVersion = 3
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
-"}}}

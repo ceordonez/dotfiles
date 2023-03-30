@@ -1,7 +1,6 @@
 "----------------------------------------------------------------------
 " Grammarous configuration
 "----------------------------------------------------------------------
-"{{{
 " Setting for grammar check (Grammarous)
 let g:grammarous#disabled_rules = {
             \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
@@ -9,4 +8,3 @@ let g:grammarous#disabled_rules = {
             \ }
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
-"}}}

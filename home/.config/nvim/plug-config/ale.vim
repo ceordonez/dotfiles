@@ -1,7 +1,6 @@
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
-" {{{ "
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -31,5 +30,7 @@ noremap <LocalLeader>= :ALEFix<cr>
 
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
-let g:ale_sign_warning = ">>"
-" }}} "
+let g:ale_sign_warning = ">"
+" let g:ale_python_auto_pipenv = 1
+" let g:ale_python_pylint_change_directory=0
+" let g:ale_python_flake8_change_directory=0

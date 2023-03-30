@@ -62,4 +62,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'puremourning/vimspector'
 " vim diff char"
 Plug 'rickhowe/diffchar.vim'
+" If you have nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
