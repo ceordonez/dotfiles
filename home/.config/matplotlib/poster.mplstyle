@@ -1,0 +1,21 @@
+text.usetex: True
+font.size: 20
+text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \usepackage{helvet} \renewcommand\familydefault{\sfdefault} \usepackage[T1]{fontenc} \usepackage{cmbright} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}}
+lines.linewidth: 3
+lines.markerfacecolor: white
+lines.markersize: 10
+axes.spines.top: False
+axes.spines.right: False
+axes.labelsize: 23
+legend.fontsize: 20
+legend.frameon: False
+xtick.minor.visible: True
+xtick.major.size: 5
+xtick.major.width: 1
+ytick.minor.visible: True
+ytick.major.size: 5
+ytick.major.width: 1
+savefig.dpi: 300
+savefig.format: pdf
+savefig.bbox: tight
+savefig.pad_inches: .1

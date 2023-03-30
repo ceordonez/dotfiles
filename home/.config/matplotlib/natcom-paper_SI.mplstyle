@@ -1,23 +1,23 @@
 text.usetex: True
-font.size: 6
-font.family: sans-serif
+font.size: 8
 font.sans-serif: Helvetica
 #text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \usepackage{helvet} \renewcommand\familydefault{\sfdefault} \usepackage[T1]{fontenc} \usepackage{cmbright} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}}
 text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}} \usepackage{helvet} \usepackage{sfmath}
-#axes.prop_cycle: cycler('color', ['332288', '117733', '44aa99', '88ccee', 'ddcc77', 'cc6677', 'aa4499', '882255'])
-axes.prop_cycle: cycler('color', ["000000", "e69f00", "56b4e9", "009e73", "f0e442", "0072b2", "d55e00", "cc79a7"])
 lines.linewidth: 1
 lines.markerfacecolor: white
 axes.spines.top: False
 axes.spines.right: False
-axes.labelsize: 7
-legend.fontsize: 7
+axes.labelsize: 9
+#axes.prop_cycle: cycler('color', ['332288', '117733', '44aa99', '88ccee', 'ddcc77', 'cc6677', 'aa4499', '882255'])
+axes.prop_cycle: cycler('color', ["000000", "e69f00", "56b4e9", "009e73", "f0e442", "0072b2", "d55e00", "cc79a7"])
+#linecylce: ls = ['-', '--', '-.', ':', (0, (3, 5, 1, 5))]
+legend.fontsize: 9
 legend.frameon: False
 xtick.minor.visible: True
-xtick.major.size: 4
+xtick.major.size: 5
 xtick.major.width: 1
 ytick.minor.visible: True
-ytick.major.size: 4
+ytick.major.size: 5
 ytick.major.width: 1
 savefig.dpi: 300
 savefig.format: pdf
