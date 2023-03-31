@@ -23,3 +23,6 @@ cmd = latexdiff "$LOCAL" "$REMOTE"
     prompt = false
 [difftool.vimdiff]
     cmd = nvim -d "$LOCAL" "$REMOTE"
+[pull]
+    rebase = true
+
