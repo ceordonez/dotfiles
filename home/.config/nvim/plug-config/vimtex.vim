@@ -16,3 +16,14 @@ let latex_to_unicode_tab = 0
 let g:vimtex_syntax_conceal_disable = 1
 "let g:vimtex_syntax_conceal = {'math_bounds': 0}
 let g:vimtex_toc_config={'layer_status': {'content': 1, 'label': 0, 'todo': 1, 'include': 0}}
+function! ZathuraHook() abort
+  if exists('b:vimtex.viewer.xwin_id') && b:vimtex.viewer.xwin_id <= 0
+    silent call system('xdotool windowactivate ' . b:vimtex.viewer.xwin_id . ' --sync')
+    silent call system('xdotool windowraise ' . b:vimtex.viewer.xwin_id)
+  endif
+endfunction
+
+augroup vimrc_vimtex
+  autocmd!
+  autocmd User VimtexEventView call ZathuraHook()
+augroup END

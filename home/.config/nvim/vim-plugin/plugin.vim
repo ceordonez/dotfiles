@@ -58,10 +58,12 @@ Plug 'Yggdroot/indentLine'
 " Writing checker
 " Plug 'preservim/vim-wordy'
 " Plug 'dpelle/vim-LanguageTool'
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 Plug 'puremourning/vimspector'
 " vim diff char"
 Plug 'rickhowe/diffchar.vim'
-" If you have nodejs and yarn
+" nvim-r"
+Plug 'jalvesaq/Nvim-R'
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()

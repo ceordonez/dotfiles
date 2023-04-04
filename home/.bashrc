@@ -130,6 +130,6 @@ export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
+source ~/.local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenvs   # Optional
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
