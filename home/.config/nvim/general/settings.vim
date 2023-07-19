@@ -64,6 +64,7 @@ augroup spell_group
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
     autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew .md setlocal spell
     autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
     autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
