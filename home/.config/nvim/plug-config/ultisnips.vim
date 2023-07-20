@@ -10,8 +10,8 @@ let g:UltiSnipsListSnippets="<c-.>"
 let g:UltiSnipsEditSplit="vertical"
 "set runtimepath+=~/.config/nvim/autoload/plugged/vim-snippets/snippets
 let g:UltiSnipsSnippetDirectories=[
-            \$HOME.'/.config/nvim/autoload/plugged/vim-snippets/UltiSnips']
-            "\$HOME.'/.config/nvim/autoload/plugged/vim-snippets/snippets']
+            \$HOME.'/.config/nvim/autoload/plugged/vim-snippets/UltiSnips',
+            \$HOME.'/.config/nvim/autoload/plugged/vim-snippets/my_snippets']
             "\'UltiSnips']
             "\$HOME.'.vim/UltiSnips',
 " Set the smart function definition to use numpy style for docstrings
