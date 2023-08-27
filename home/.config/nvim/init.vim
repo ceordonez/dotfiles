@@ -37,7 +37,8 @@ source $HOME/.config/nvim/themes/airline.vim
 
 " ADDITIONAL FUNCTIONS
 source $HOME/.config/nvim/plug-config/vim-tmux-navigator.vim
-source $HOME/.config/nvim/plug-config/vimwiki.vim
+"source $HOME/.config/nvim/plug-config/vimwiki.vim
+source $HOME/.config/nvim/plug-config/wiki.vim
 
 " PROGRAMMING
 source $HOME/.config/nvim/general/quickrun.vim

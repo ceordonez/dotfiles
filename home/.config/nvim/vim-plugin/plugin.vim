@@ -7,7 +7,8 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 " Vim-wiki"
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
+Plug 'lervag/wiki.vim'
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Ultisnips

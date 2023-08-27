@@ -8,3 +8,5 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 " makes vimwiki markdown list as [text](text.md) instead of [text](text)
 let g:vimwiki_markdown_link_ext = 1
 let g:markdown_folding = 0
+" Other markdown files wouldn't be treated as wiki pages
+let g:vimwiki_global_ext = 0
