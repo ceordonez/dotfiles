@@ -59,12 +59,17 @@ Plug 'Yggdroot/indentLine'
 " Writing checker
 " Plug 'preservim/vim-wordy'
 " Plug 'dpelle/vim-LanguageTool'
-" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'puremourning/vimspector'
 " vim diff char"
 Plug 'rickhowe/diffchar.vim'
 " nvim-r"
 Plug 'jalvesaq/Nvim-R'
 
+" Markdown Preview"
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+" Vim Markdown"
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 call plug#end()
