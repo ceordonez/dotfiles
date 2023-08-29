@@ -31,9 +31,9 @@ set list
 set listchars=tab:>-
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=0 concealcursor=niv
-endif
+"if has('conceal')
+"  set conceallevel=0 concealcursor=niv
+"endif
 
 "----------------------------------------------------------------------
 " Colors for GVim

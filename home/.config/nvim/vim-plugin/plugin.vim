@@ -23,6 +23,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'Townk/vim-autoclose'
 " Nord colorscheme
 Plug 'arcticicestudio/nord-vim'
+"Plug 'shaunsingh/nord.nvim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " Indent text object
