@@ -1,4 +1,4 @@
-"----------------------------------------------------------------------
+
 " Ale configurations
 "----------------------------------------------------------------------
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -27,6 +27,9 @@ let g:ale_fixers = {
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>
+
+" Only run linters namend in ale_linters settings
+let g:ale_linters_explicit = 1
 
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
