@@ -73,4 +73,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Vim Markdown"
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+
+Plug 'jalvesaq/zotcite'
 call plug#end()
+
