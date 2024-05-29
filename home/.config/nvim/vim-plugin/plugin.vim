@@ -10,6 +10,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 "Plug 'vimwiki/vimwiki'
 Plug 'lervag/wiki.vim'
 " Convert latex expressions into unicode equivalents
+Plug 'lervag/lists.vim'
 Plug 'joom/latex-unicoder.vim'
 " Ultisnips
 Plug 'SirVer/ultisnips'

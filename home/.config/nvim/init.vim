@@ -20,6 +20,7 @@ source $HOME/.config/nvim/plug-config/vim-easy-align.vim
 source $HOME/.config/nvim/plug-config/markdown-preview.vim
 source $HOME/.config/nvim/plug-config/vim-markdown.vim
 source $HOME/.config/nvim/plug-config/indentLine.vim
+source $HOME/.config/nvim/plug-config/lists.vim
 "source $HOME/.config/nvim/plug-config/vim-pandoc.vim
 "source $HOME/.config/nvim/plug-config/languagetool.vim
 
