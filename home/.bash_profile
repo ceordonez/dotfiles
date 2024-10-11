@@ -11,8 +11,8 @@ export PATH="/usr/share/texlive/:$PATH"
 
 export MPLCONFIGDIR="$HOME/.config/matplotlib"
 # Virtual Env
-export WORKON_HOME=~/.virtualenvs   # Optional
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+#export WORKON_HOME=~/.virtualenvs   # Optional
+#export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 #source ~/.local/bin/virtualenvwrapper.sh
 #source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
@@ -30,3 +30,6 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 alias python='/usr/bin/python2.7'
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# Created by `pipx` on 2024-09-16 12:31:10
+export PATH="$PATH:/home/cesar-ordonez/.local/bin"

@@ -10,8 +10,8 @@
 " GENERAL
 source $HOME/.config/nvim/vim-plugin/plugin.vim
 source $HOME/.config/nvim/general/settings.vim
-
-" TEXT SUPPORT
+"
+"" TEXT SUPPORT
 source $HOME/.config/nvim/plug-config/vimtex.vim
 source $HOME/.config/nvim/plug-config/rainbow.vim
 source $HOME/.config/nvim/plug-config/ale.vim
@@ -21,20 +21,20 @@ source $HOME/.config/nvim/plug-config/markdown-preview.vim
 source $HOME/.config/nvim/plug-config/vim-markdown.vim
 source $HOME/.config/nvim/plug-config/indentLine.vim
 source $HOME/.config/nvim/plug-config/lists.vim
-"source $HOME/.config/nvim/plug-config/vim-pandoc.vim
-"source $HOME/.config/nvim/plug-config/languagetool.vim
+""source $HOME/.config/nvim/plug-config/vim-pandoc.vim
+""source $HOME/.config/nvim/plug-config/languagetool.vim
 
 
 " FILE MANAGEMENT
 source $HOME/.config/nvim/plug-config/nerdtree.vim
 
 " AUTOCOMPLETE
-source $HOME/.config/nvim/plug-config/coc.vim
+"source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/ultisnips.vim
 
 " MAPPINGS
 source $HOME/.config/nvim/keys/mappings.vim
-
+"
 " APPEARANCE
 source $HOME/.config/nvim/themes/airline.vim
 "source $HOME/.config/nvim/plug-config/goyo.vim
@@ -47,6 +47,9 @@ source $HOME/.config/nvim/plug-config/wiki.vim
 " PROGRAMMING
 source $HOME/.config/nvim/general/quickrun.vim
 "source $HOME/.config/nvim/plug-config/julia-vim
+source $HOME/.config/nvim/plug-config/ncm2.vim
+
+source $HOME/.config/nvim/plug-config/zotcite.vim
 
 filetype plugin on
 syntax on

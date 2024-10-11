@@ -36,7 +36,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " ALE
 Plug 'dense-analysis/ale'
 " COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better file browser
 Plug 'preservim/nerdtree'
 " Asyncrun
@@ -67,14 +67,22 @@ Plug 'puremourning/vimspector'
 Plug 'rickhowe/diffchar.vim'
 " nvim-r"
 Plug 'jalvesaq/Nvim-R'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'gaalcaras/ncm-R'
+"Plug 'itchyny/lightline.npm
+
 
 " Markdown Preview"
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes npm install' }
 
 " Vim Markdown"
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 
-Plug 'jalvesaq/zotcite'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'rev': '0.1.8'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'jalvesaq/zotcite', {'branch': 'vim'}
 call plug#end()
-
+""
