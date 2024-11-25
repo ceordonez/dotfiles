@@ -1,8 +1,8 @@
 # My Alias
-alias postd='cd /home/cesar-ordonez/Dropbox/Cesar/PostDoc'
-alias phd='cd /home/cesar-ordonez/Dropbox/Cesar/PhD'
-alias mls='cd /home/cesar-ordonez/Dropbox/Cesar/PhD/Data/Fieldwork/MultiLakeSurvey'
-alias pyp='cd /home/cesar-ordonez/Documentos/PhD/PY_projects'
+alias postd='cd /home/cesar/Dropbox/Cesar/PostDoc'
+alias phd='cd /home/cesar/Dropbox/Cesar/PhD'
+alias mls='cd /home/cesar/Dropbox/Cesar/PhD/Data/Fieldwork/MultiLakeSurvey'
+alias pyp='cd /home/cesar/Documents/PhD/PY_projects'
 
 alias copaper='cd /home/cesar-ordonez/Dropbox/Cesar/PhD/My_Papers/01_Ordonez_et_al/Paper_revision'
 alias mapaper='cd /home/cesar-ordonez/Dropbox/Cesar/PhD/My_Papers/02_Massot_et_al/LimnoOcea'
