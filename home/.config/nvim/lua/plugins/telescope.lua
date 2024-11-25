@@ -2,7 +2,9 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
         cmd = "Telescope",
         keys = {
             {
@@ -41,6 +43,7 @@ return {
                 desc = "Grep",
             },
         },
+
         opts = {
             defaults = {
                 scroll_strategy = "limit",
@@ -60,6 +63,16 @@ return {
                         preview_cutoff = 10,
                         prompt_position = "top",
                     },
+                },
+                vimgrep_arguments = {
+                    "rg",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                    "-L",
                 },
                 file_ignore_patterns = {
                     "%.pyc",

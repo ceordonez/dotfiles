@@ -54,3 +54,4 @@ vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning
 -- toggle options
 -- LazyVim.format.snacks_toggle():map("<leader>uf")
 -- LazyVim.format.snacks_toggle(true):map("<leader>uF")
+vim.o.conceallevel = 2

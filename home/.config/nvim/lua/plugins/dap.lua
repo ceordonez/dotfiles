@@ -12,7 +12,7 @@ return {
 			local dappy = require("dap-python")
 
 			dapui.setup()
-			dappy.setup("~/.virtualenvs/debugpy/bin/python3")
+			dappy.setup("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3")
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open()
 			end
