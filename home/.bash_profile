@@ -30,6 +30,4 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 alias python='/usr/bin/python2.7'
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
-
-# Created by `pipx` on 2024-09-16 12:31:10
-export PATH="$PATH:/home/cesar-ordonez/.local/bin"
+export PATH="$HOME/Documents/MODELS/pestpp-5.2.7-linux:$PATH"

@@ -3,7 +3,7 @@ font.size: 6
 font.family: sans-serif
 font.sans-serif: Helvetica
 #text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \usepackage{helvet} \renewcommand\familydefault{\sfdefault} \usepackage[T1]{fontenc} \usepackage{cmbright} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}}
-text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}} \usepackage{helvet} \usepackage{sfmath}
+text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{y} \usepackage{helvet} \usepackage{sfmath}
 #axes.prop_cycle: cycler('color', ['332288', '117733', '44aa99', '88ccee', 'ddcc77', 'cc6677', 'aa4499', '882255'])
 axes.prop_cycle: cycler('color', ["000000", "e69f00", "56b4e9", "009e73", "f0e442", "0072b2", "d55e00", "cc79a7"])
 figure.autolayout: True

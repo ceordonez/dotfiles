@@ -1,0 +1,63 @@
+--return {
+--    {
+--        "lervag/vimtex",
+--        lazy = false,     -- we don't want to lazy load VimTeX
+--        -- tag = "v2.15", -- uncomment to pin to a specific release
+--        dependencies = {
+--                  {"hrsh7th/nvim-cmp" },
+--              },
+--        keys = {
+--        { "<localleader>ll", "<Plug>(vimtex-compile-ss)" },
+--        { "<localleader>ll", "<Plug>(vimtex-compile-selected)", mode = "v" },
+--        { "<localleader>lv", "<Plug>(vimtex-view)" },
+--        { "<localleader>lo", "<Plug>(vimtex-compile-output)" },
+--        { "<localleader>rf", "<cmd>VimtexRefreshFolds<cr>" },
+--        },
+--        
+--        init = function()
+--            -- VimTeX configuration goes here, e.g.
+--            vim.g.tex_flavor = "latex"
+--
+--            local cmp = require("cmp")
+--
+--            cmp.setup.filetype("tex", {
+--                formatting = {
+--                format = function(entry, vim_item)
+--                    vim_item.menu = ({
+--                        omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
+--                        buffer = "[Buffer]",
+--                        -- formatting for other sources
+--                    })[entry.source.name]
+--                    return vim_item
+--                end,
+--                },
+--            })
+--            vim.g.vimtex_view_method = "zathura"
+--            -- Set options for vimtex
+--            vim.g.vimtex_toc_config = {
+--            layer_status = {
+--                    content = 1,
+--                    label = 0,
+--                    todo = 1,
+--                    include = 0}
+--            }
+--            vim.g.vimtex_compiler_latexmk = {
+--            out_dir = "",
+--            aux_dir = "",
+--            callback = 1,
+--            continuous = 1,
+--            executable = "latexmk",
+--            options = {
+--              "-verbose",
+--              "-shell-escape",
+--              "-file-line-error",
+--              "-synctex=1",
+--              "-interaction=nonstopmode",
+--              },
+--            }
+--        end
+--    },
+--    { 
+--        "micangl/cmp-vimtex" 
+--    }
+--}
