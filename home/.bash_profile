@@ -27,7 +27,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # export TERM="xterm-256color"
 # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-alias python='/usr/bin/python2.7'
+#alias python='/usr/bin/python2.7'
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PATH="$HOME/Documents/MODELS/pestpp-5.2.7-linux:$PATH"
