@@ -4,6 +4,8 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"nvim-lua/plenary.nvim",
 	},
+    enable = false,
+    cond = false,
 	config = function()
 		local alpha = require("alpha")
 		local theta = require("alpha.themes.theta")

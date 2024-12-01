@@ -91,7 +91,7 @@ return {
             -- Grammar correction using ltex-ls
             local ltex_setup = {
                 -- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
-                filetypes = { "tex", "markdown", "plaintex" },
+                filetypes = { "tex", "plaintex" },
                 settings = {
                     ltex = {
                         language = "en-US",
