@@ -6,6 +6,7 @@ return {
 		ft = { "tex", "cls", "sty", "tikz" },
 		dependencies = {
 			{ "hrsh7th/nvim-cmp" },
+			{ "junegunn/vim-easy-align" },
 		},
 		keys = {
 			{ "<localleader>ll", "<Plug>(vimtex-compile-ss)" },
@@ -33,8 +34,7 @@ return {
 					end,
 				},
 			})
-			--vim.g.vimtex_view_method = "zathura"
-			-- Set options for vimtex
+			-- Set options for toc vimtex
 			vim.g.vimtex_toc_config = {
 				layer_status = {
 					content = 1,
@@ -133,20 +133,4 @@ return {
 			}
 		end,
 	},
-	-- 		vim.g.vimtex_compiler_latexmk = {
-	-- 			out_dir = "out",
-	-- 			aux_dir = ".aux",
-	-- 			callback = 1,
-	-- 			continuous = 0,
-	-- 			executable = "latexmk",
-	-- 			options = {
-	-- 				"-verbose",
-	-- 				"-shell-escape",
-	-- 				"-file-line-error",
-	-- 				"-synctex=1",
-	-- 				"-interaction=nonstopmode",
-	-- 			},
-	-- 		}
-	-- 	end,
-	-- },
 }
