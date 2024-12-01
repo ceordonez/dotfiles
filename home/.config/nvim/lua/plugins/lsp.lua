@@ -14,13 +14,6 @@ return {
             end,
         },
     },
-    --	{
-    --		"neovim/nvim-lspconfig",
-    --		config = function()
-    --			lspconfig.ltex.setup({})
-    --		end,
-    --	},
-    --}
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -61,7 +54,7 @@ return {
 
             lspconfig.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, lsp_capabilities)
             require("mason").setup({})
-            --lspconfig.basedpyright.setup{}
+
             -- Python LSP
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
@@ -95,7 +88,7 @@ return {
                     },
                 },
             })
-            -- Grammar correctoin using ltex-ls
+            -- Grammar correction using ltex-ls
             local ltex_setup = {
                 -- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
                 filetypes = { "tex", "markdown", "plaintex" },

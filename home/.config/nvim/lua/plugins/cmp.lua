@@ -10,7 +10,7 @@ return {
 			"micangl/cmp-vimtex",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-path",
-            "kdheepak/cmp-latex-symbols",
+			"kdheepak/cmp-latex-symbols",
 		},
 	},
 	{
@@ -47,6 +47,7 @@ return {
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "path", option = { trailin_slash = true }, priority = 4 },
 					{ name = "latex_symbols", priority = 2 },
+					{ name = "cmp_zotcite" },
 				}, {
 					{ name = "buffer" },
 				}),

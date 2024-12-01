@@ -9,13 +9,5 @@ return {
             component_separators = { left = '', right = '' },
 		},
 		extensions = { "quickfix", "neo-tree" },
-		--tabline = {
-		--	lualine_a = { "buffers" },
-		--	lualine_z = {
-		--		function()
-		--			return [[buffers]]
-		--		end,
-		--	},
-		--},
 	},
 }

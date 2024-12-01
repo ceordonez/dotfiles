@@ -1,7 +1,8 @@
 return {
 	{
 		"echasnovski/mini.nvim",
-		version = "*",
+		version = false,
+        lazy = true,
 		config = function()
 			require("mini.pairs").setup()
 		end,
