@@ -27,7 +27,7 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 --vim.opt.guicursor =
 --  "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+-- vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -55,3 +55,12 @@ vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning
 -- LazyVim.format.snacks_toggle():map("<leader>uf")
 -- LazyVim.format.snacks_toggle(true):map("<leader>uF")
 vim.o.conceallevel = 2
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "i", "<Tab>",
+      [[pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"]],
+      { expr = true, noremap = true }
+    )
+  end,
+})

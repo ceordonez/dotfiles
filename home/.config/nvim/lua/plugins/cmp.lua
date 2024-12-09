@@ -12,6 +12,19 @@ return {
 			"hrsh7th/cmp-path",
 			"kdheepak/cmp-latex-symbols",
 		},
+        config = function()
+            local ls = require("luasnip")
+            vim.keymap.set({"i","s"}, "<M-n>", function ()
+                if ls.expand_or_jumpable() then
+                    ls.expand_or_jump()
+                end
+            end, {silent=true})
+            vim.keymap.set({"i","s"}, "<M-b>", function ()
+                if ls.jumpable() then
+                    ls.jump(-1)
+                end
+            end, {silent=true})
+        end
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -40,6 +53,20 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
