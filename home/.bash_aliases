@@ -4,6 +4,7 @@ alias phd='cd ~/Dropbox/Cesar/PhD'
 alias mls='cd ~/Dropbox/Cesar/PhD/Data/Fieldwork/MultiLakeSurvey'
 alias pyp='cd ~/Documents/PhD/PY_projects'
 alias halp='cd ~/Dropbox/Cesar/PostDoc/Projects/WaterClarity/'
+alias todo='vi ~/Dropbox/Cesar/Notes/TODO_list.md'
 
 alias copaper='cd /home/cesar/Dropbox/Cesar/PhD/My_Papers/01_Ordonez_et_al/Paper_revision'
 alias mapaper='cd /home/cesar/Dropbox/Cesar/PhD/My_Papers/02_Massot_et_al/LimnoOcea'

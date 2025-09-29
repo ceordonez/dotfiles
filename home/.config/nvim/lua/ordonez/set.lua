@@ -93,6 +93,64 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
 vim.g.lazyvim_cmp="nvim-cmp"
+-- 1. Define the toggle states (Unicode symbols)
+vim.g.lists_todos = { '⬜', '⚡', '✅' }
+
+-- reusable function to set colors + matches
+local function set_todo_highlights()
+  -- 1) Colors
+  vim.api.nvim_set_hl(0, "TodoBox",  { fg = "#BF616A", bold = true})
+  vim.api.nvim_set_hl(0, "TodoProg", { fg = "#81A1C1", bold = false })
+  vim.api.nvim_set_hl(0, "TodoDone", { fg = "#A3BE8C", bold = false })
+
+  -- 2) Matches (force with matchadd so they survive Treesitter)
+  vim.fn.matchadd("TodoBox",  [[^\s*[-*+]\s\+⬜:.*$]])
+  vim.fn.matchadd("TodoProg", [[^\s*[-*+]\s\+⚡:.*$]])
+  vim.fn.matchadd("TodoDone", [[^\s*[-*+]\s\+✅:.*$]])
+end
+
+-- run once now
+set_todo_highlights()
+
+-- re-apply after colorscheme or buffer change
+vim.api.nvim_create_autocmd({ "ColorScheme", "BufEnter" }, {
+  callback = set_todo_highlights,
+})
+
+
+-- Define state groups
+local function reorder_todo_list()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local todo_lines, prog_lines, done_lines = {}, {}, {}
+
+  for _, line in ipairs(lines) do
+    local state = line:match("^%s*[-*+]%s+(%S+)")
+    if state == "⬜:" then
+      table.insert(todo_lines, line)
+    elseif state == "⚡:" then
+      table.insert(prog_lines, line)
+    elseif state == "✅:" then
+      table.insert(done_lines, line)
+    else
+      table.insert(todo_lines, line) -- fallback: treat as TODO
+    end
+  end
+
+  -- Combine groups in order: TODO → IN-PROGRESS → DONE
+  local new_lines = {}
+  for _, l in ipairs(todo_lines) do table.insert(new_lines, l) end
+  for _, l in ipairs(prog_lines) do table.insert(new_lines, l) end
+  for _, l in ipairs(done_lines) do table.insert(new_lines, l) end
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, new_lines)
+end
+
+-- Toggle keymap example
+vim.keymap.set("n", "<leader>d", function()
+  vim.cmd("normal! <Plug>(lists-toggle)") -- toggle symbol
+  reorder_todo_list()                     -- reorder by group, stable
+end, { noremap = true, silent = true })
+
 -- Make history persistent between sessions
 --vim.opt.undofile = true
 --vim.opt.undodir = vim.env.HOME .. "/.config/nvim/undodir"
