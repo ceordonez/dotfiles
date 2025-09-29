@@ -6,8 +6,8 @@ lines.markerfacecolor: white
 lines.markersize: 10
 axes.spines.top: False
 axes.spines.right: False
-axes.labelsize: 23
-legend.fontsize: 20
+axes.labelsize: 21
+legend.fontsize: 19
 legend.frameon: False
 xtick.minor.visible: True
 xtick.major.size: 5

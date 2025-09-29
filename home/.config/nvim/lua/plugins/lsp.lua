@@ -49,10 +49,15 @@ return {
 		},
 		config = function(_, opts)
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			local lsp_defaults = lspconfig.util.default_config
+            -- local lspconfig = require("lspconfig")
+            local lspconfig = vim.lsp.config
+			--local lsp_defaults = lspconfig.util.default_config
+            --local lsp_defaults = vim.lsp.config"util"
 
-			lspconfig.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, lsp_capabilities)
+			--lspconfig.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, lsp_capabilities)
+
+            lspconfig.capabilities = lsp_capabilities
+
 			require("mason").setup({})
 
 			-- Python LSP
@@ -70,7 +75,7 @@ return {
 				end
 			end
 
-			lspconfig.basedpyright.setup({
+			lspconfig("basedpyright", {
 				settings = {
 					python = {
 						pythonPath = get_python_path(),
@@ -107,9 +112,10 @@ return {
 							},
 						},
 					},
-				}, lspconfig.lua_ls.setup({})
-			lspconfig.ltex.setup(ltex_setup)
-			lspconfig.marksman.setup({
+				}
+            --lspconfig("lua_ls")
+			lspconfig("ltex", ltex_setup)
+			lspconfig("marksman", {
 				on_attach = function(client, bufnr)
 					if client.name == "marksman" then
 						vim.diagnostic.enable(false)
@@ -118,8 +124,8 @@ return {
 					end
 				end,
 			})
-			lspconfig.r_language_server.setup({})
-			lspconfig.bashls.setup({})
+			lspconfig("r_language_server",{})
+			lspconfig("bashls",{})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

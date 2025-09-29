@@ -4,7 +4,17 @@ return {
 		dependencies = {
 			--{ "lervag/wiki-ft.vim" },
 			--{ "nabla" },
-			{ "lervag/lists.vim" },
+			{ 
+                "lervag/lists.vim",
+                config = function()
+                    vim.api.nvim_create_autocmd("FileType", {
+                        pattern = "markdown",
+                        callback = function()
+                            vim.cmd("ListsEnable")
+                        end,
+                    })
+                end,
+            },
 		},
 		-- tag = "v0.8",
 		lazy = true,
@@ -45,11 +55,11 @@ return {
 			filetypes = { "markdown", "pandoc", "rmd", "vimwiki" },
 		},
 	},
-	{
-		"lervag/lists.vim",
-		ft = "md",
-		-- init = function()
-		--     vim.g.lists_filetypes = { "md" }
-		-- end
-	},
+	-- {
+	-- 	"lervag/lists.vim",
+	-- 	ft = "md",
+	-- 	-- init = function()
+	-- 	--     vim.g.lists_filetypes = { "md" }
+	-- 	-- end
+	-- },
 }
