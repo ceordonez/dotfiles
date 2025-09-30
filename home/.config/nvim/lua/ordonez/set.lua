@@ -158,3 +158,10 @@ end, { noremap = true, silent = true })
 --if not vim.fn.isdirectory(vim.env.HOME .. "/.config/nvim/undodir") then
 --  vim.fn.mkdir(vim.env.HOME .. "/.config/nvim/undodir")
 --end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})

@@ -139,5 +139,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fnm
-export PATH="/home/cesar/.local/share/fnm:$PATH"
-eval "`fnm env`"
+FNM_PATH="/home/cesar/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+
+# fnm
+GOTM_PATH="/home/cesar/local/gotm/bin/"
+if [ -d "$GOTM_PATH" ]; then
+  export PATH="$GOTM_PATH:$PATH"
+fi
+

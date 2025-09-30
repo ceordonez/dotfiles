@@ -31,3 +31,8 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PATH="$HOME/Documents/MODELS/pestpp-5.2.7-linux:$PATH"
+
+# For pytide
+# export LAPACK=/usr/lib/liblapack.so
+# export ATLAS=/usr/lib/libatlas.so
+# export BLAS=/usr/lib/libblas.so

@@ -1,6 +1,7 @@
 text.usetex: True
 font.size: 20
 text.latex.preamble: \usepackage{wasysym} \usepackage{siunitx} \usepackage{helvet} \renewcommand\familydefault{\sfdefault} \usepackage[T1]{fontenc} \usepackage{cmbright} \DeclareSIUnit\permille{\text{\textperthousand}} \DeclareSIUnit\year{\text{y}}
+axes.prop_cycle: cycler('color', ["000000", "e69f00", "56b4e9", "009e73", "f0e442", "0072b2", "d55e00", "cc79a7"])
 lines.linewidth: 3
 lines.markerfacecolor: white
 lines.markersize: 10

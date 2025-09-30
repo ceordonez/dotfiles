@@ -7,24 +7,24 @@ return {
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
-			"micangl/cmp-vimtex",
+			-- "micangl/cmp-vimtex",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-path",
-			"kdheepak/cmp-latex-symbols",
+			-- "kdheepak/cmp-latex-symbols",
 		},
-        config = function()
-            local ls = require("luasnip")
-            vim.keymap.set({"i","s"}, "<M-n>", function ()
-                if ls.expand_or_jumpable() then
-                    ls.expand_or_jump()
-                end
-            end, {silent=true})
-            vim.keymap.set({"i","s"}, "<M-b>", function ()
-                if ls.jumpable() then
-                    ls.jump(-1)
-                end
-            end, {silent=true})
-        end
+		config = function()
+			local ls = require("luasnip")
+			vim.keymap.set({ "i", "s" }, "<M-n>", function()
+				if ls.expand_or_jumpable() then
+					ls.expand_or_jump()
+				end
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<M-b>", function()
+				if ls.jumpable() then
+					ls.jump(-1)
+				end
+			end, { silent = true })
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -73,7 +73,7 @@ return {
 					--{ name = "vsnip" }, -- For vsnip users.
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "path", option = { trailin_slash = true }, priority = 4 },
-					{ name = "latex_symbols", priority = 2 },
+					-- { name = "latex_symbols", priority = 2 },
 					{ name = "cmp_zotcite" },
 				}, {
 					{ name = "buffer" },
