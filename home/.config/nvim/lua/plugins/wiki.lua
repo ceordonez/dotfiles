@@ -25,7 +25,7 @@ return {
 		},
 		init = function()
 			-- Root folder
-			vim.g.wiki_root = "~/Dropbox/Cesar/Notes/"
+			vim.g.wiki_root = "~/Documents/Notes/"
 		end,
 		config = function()
 			vim.opt.autochdir = true
