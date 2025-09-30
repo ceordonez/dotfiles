@@ -49,14 +49,14 @@ return {
 		},
 		config = function(_, opts)
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-            -- local lspconfig = require("lspconfig")
-            local lspconfig = vim.lsp.config
+			-- local lspconfig = require("lspconfig")
+			-- local lspconfig = vim.lsp.config
 			--local lsp_defaults = lspconfig.util.default_config
-            --local lsp_defaults = vim.lsp.config"util"
+			--local lsp_defaults = vim.lsp.config"util"
 
 			--lspconfig.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, lsp_capabilities)
 
-            lspconfig.capabilities = lsp_capabilities
+			vim.lsp.config.capabilities = lsp_capabilities
 
 			require("mason").setup({})
 
@@ -75,7 +75,7 @@ return {
 				end
 			end
 
-			lspconfig("basedpyright", {
+			vim.lsp.config("basedpyright", {
 				settings = {
 					python = {
 						pythonPath = get_python_path(),
@@ -93,29 +93,47 @@ return {
 					},
 				},
 			})
-			-- Grammar correction using ltex-ls
-			local ltex_setup =
-				{
-					-- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
-					filetypes = { "tex", "bib", "markdown", "latex" },
-					settings = {
-						ltex = {
-							language = "auto",
-							-- additionalRules = {
-							-- 	motherTongue = "es",
-							-- },
-							latex = {
-								commands = {
-									-- "qty", -- Ignore `\qty`
-									{ name = "qty", arguments = "ignore" }, -- Specify that `\qty` takes 2 arguments
-								},
+			-- -- Grammar correction using ltex-ls
+			-- local ltex_setup = {
+			-- 	-- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
+			-- 	filetypes = { "tex", "bib", "markdown", "latex" },
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			language = "en-US",
+			-- 			additionalRules = {
+			-- 				motherTongue = "es",
+			-- 			},
+			-- 			latex = {
+			-- 				commands = {
+			-- 					-- "qty", -- Ignore `\qty`
+			-- 					{ name = "qty", arguments = "ignore" }, -- Specify that `\qty` takes 2 arguments
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- }
+
+			vim.lsp.config("ltex", {
+				filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text" },
+				settings = {
+					ltex = {
+						enabled = { "latex", "tex", "bib", "markdown" },
+						language = "en-US", -- must be full locale
+						additionalRules = { motherTongue = "es" },
+						latex = {
+							commands = {
+								{ name = "qty", arguments = "ignore" }, -- ignore \qty
 							},
 						},
 					},
-				}
-            --lspconfig("lua_ls")
-			lspconfig("ltex", ltex_setup)
-			lspconfig("marksman", {
+				},
+			})
+
+			-- vim.lsp.enable("ltex")
+			--lspconfig("lua_ls")
+			-- vim.lsp.config("ltex", ltex_setup)
+			-- vim.lsp.enable("ltex")
+			vim.lsp.config("marksman", {
 				on_attach = function(client, bufnr)
 					if client.name == "marksman" then
 						vim.diagnostic.enable(false)
@@ -124,8 +142,10 @@ return {
 					end
 				end,
 			})
-			lspconfig("r_language_server",{})
-			lspconfig("bashls",{})
+            vim.lsp.enable("marksman")
+			-- lspconfig("r_language_server", {})
+			-- lspconfig("bashls", {})
+
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
