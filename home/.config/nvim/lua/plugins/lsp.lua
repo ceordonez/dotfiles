@@ -113,12 +113,12 @@ return {
 			-- 	},
 			-- }
 
-			vim.lsp.config("ltex", {
+			vim.lsp.config("ltex_plus", {
 				filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text" },
 				settings = {
 					ltex = {
 						enabled = { "latex", "tex", "bib", "markdown" },
-						language = "en-US", -- must be full locale
+						language = "auto", -- must be full locale
 						additionalRules = { motherTongue = "es" },
 						latex = {
 							commands = {
@@ -129,7 +129,7 @@ return {
 				},
 			})
 
-			-- vim.lsp.enable("ltex")
+			vim.lsp.enable("ltex_plus")
 			--lspconfig("lua_ls")
 			-- vim.lsp.config("ltex", ltex_setup)
 			-- vim.lsp.enable("ltex")
@@ -142,7 +142,7 @@ return {
 					end
 				end,
 			})
-            vim.lsp.enable("marksman")
+            -- vim.lsp.enable("marksman")
 			-- lspconfig("r_language_server", {})
 			-- lspconfig("bashls", {})
 
