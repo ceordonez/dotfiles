@@ -130,6 +130,7 @@ return {
 			})
 
 			vim.lsp.enable("ltex_plus")
+            vim.lsp.enable('basedpyright')
 			--lspconfig("lua_ls")
 			-- vim.lsp.config("ltex", ltex_setup)
 			-- vim.lsp.enable("ltex")
