@@ -74,7 +74,7 @@ return {
 					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "path", option = { trailin_slash = true }, priority = 4 },
 					-- { name = "latex_symbols", priority = 2 },
-					{ name = "cmp_zotcite" },
+					-- { name = "cmp_zotcite" },
 				}, {
 					{ name = "buffer" },
 				}),

@@ -4,17 +4,17 @@ return {
 		dependencies = {
 			--{ "lervag/wiki-ft.vim" },
 			--{ "nabla" },
-			{ 
-                "lervag/lists.vim",
-                config = function()
-                    vim.api.nvim_create_autocmd("FileType", {
-                        pattern = "markdown",
-                        callback = function()
-                            vim.cmd("ListsEnable")
-                        end,
-                    })
-                end,
-            },
+			{
+				"lervag/lists.vim",
+				config = function()
+					vim.api.nvim_create_autocmd("FileType", {
+						pattern = "markdown",
+						callback = function()
+							vim.cmd("ListsEnable")
+						end,
+					})
+				end,
+			},
 		},
 		-- tag = "v0.8",
 		lazy = true,
@@ -49,12 +49,27 @@ return {
 		end,
 	},
 	{
-		"jalvesaq/cmp-zotcite",
-		dependencies = { "jalvesaq/zotcite" },
-		opts = {
-			filetypes = { "markdown", "pandoc", "rmd", "vimwiki" },
+		"jalvesaq/zotcite",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim",
 		},
+		config = function()
+			require("zotcite").setup({
+				opts = {
+					filetypes = { "markdown", "pandoc", "rmd", "vimwiki" },
+				},
+				-- your options here (see doc/zotcite.txt)
+			})
+		end,
 	},
+	-- {
+	-- 	"jalvesaq/zotcite",
+	-- 	dependencies = { "jalvesaq/zotcite" },
+	-- 	opts = {
+	-- 		filetypes = { "markdown", "pandoc", "rmd", "vimwiki" },
+	-- 	},
+	-- },
 	-- {
 	-- 	"lervag/lists.vim",
 	-- 	ft = "md",

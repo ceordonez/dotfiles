@@ -1,5 +1,11 @@
 
+-- vim.g.jupytext_jupytext = vim.env.HOME .. "/.virtualenvs/neovim/bin/jupytext" 
+
+local nvim_venv_bin_path = vim.env.HOME .. "/.virtualenvs/neovim/bin"
+
 vim.g.python3_host_prog = vim.env.HOME .. "/.virtualenvs/neovim/bin/python3"
+
+vim.env.PATH = nvim_venv_bin_path .. ":" .. vim.env.PATH
 
 vim.opt.title = true
 vim.opt.titlestring = "%t %y"
