@@ -1,4 +1,5 @@
 return {
+    -- A nice first page nvim
 	"goolord/alpha-nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",

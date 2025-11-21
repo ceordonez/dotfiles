@@ -3,14 +3,21 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	{
+		-- Autocompletion for path
+		"hrsh7th/cmp-path",
+	},
+	{ "hrsh7th/cmp-buffer" },
+	{
 		"L3MON4D3/LuaSnip",
+		tag = "v2.4.1",
+		build = "make install_jsregexp",
+
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
-			-- "micangl/cmp-vimtex",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-path",
-			-- "kdheepak/cmp-latex-symbols",
+			-- 	-- "micangl/cmp-vimtex",
+			-- 	"hrsh7th/cmp-cmdline",
+			-- 	-- "kdheepak/cmp-latex-symbols",
 		},
 		config = function()
 			local ls = require("luasnip")

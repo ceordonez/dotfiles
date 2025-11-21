@@ -70,6 +70,8 @@ return {
 				local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd()) or ""
 				if vim.fn.executable(cwd .. "/.virtualenvs/bin/python3") == 1 then
 					return cwd .. "/.virtualenvs/bin/python3"
+                elseif vim.env.VIRTUAL_ENV then
+                    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
 				else
 					return "python3"
 				end
@@ -93,25 +95,6 @@ return {
 					},
 				},
 			})
-			-- -- Grammar correction using ltex-ls
-			-- local ltex_setup = {
-			-- 	-- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
-			-- 	filetypes = { "tex", "bib", "markdown", "latex" },
-			-- 	settings = {
-			-- 		ltex = {
-			-- 			language = "en-US",
-			-- 			additionalRules = {
-			-- 				motherTongue = "es",
-			-- 			},
-			-- 			latex = {
-			-- 				commands = {
-			-- 					-- "qty", -- Ignore `\qty`
-			-- 					{ name = "qty", arguments = "ignore" }, -- Specify that `\qty` takes 2 arguments
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- }
 
 			vim.lsp.config("ltex_plus", {
 				filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text" },
