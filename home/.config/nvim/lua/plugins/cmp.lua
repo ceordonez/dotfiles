@@ -37,8 +37,15 @@ return {
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
+			local copilot_suggestion = require("copilot.suggestion")
+			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
+			opts = function(_, opts)
+				opts.sources = opts.sources or {}
+				table.insert(opts.sources, { name = "lazydev", group_index = 0 })
+				return opts
+			end
 			cmp.setup({
 				snippet = {
 					-- REQUIRED - you must specify a snippet engine
@@ -59,20 +66,49 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					["<C-l>"] = cmp.mapping(function(fallback)
+						if copilot_suggestion.is_visible() then
+							copilot_suggestion.accept()
+							return
+						end
+						fallback()
+					end, { "i", "s" }),
+					["<CR>"] = cmp.mapping(function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+							return
+						end
+						fallback()
+						-- cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					end, { "i", "s" }),
+					["<M-n>"] = cmp.mapping(function(fallback)
+						if copilot_suggestion.is_visible() then
+							copilot_suggestion.next()
+							return
+						end
+						fallback()
+					end, { "i", "s" }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						else
-							fallback()
+							return
 						end
+						fallback()
+					end, { "i", "s" }),
+					--
+					["<C-p>"] = cmp.mapping(function(fallback)
+						if copilot_suggestion.is_visible() then
+							copilot_suggestion.next()
+							return
+						end
+						fallback()
 					end, { "i", "s" }),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						else
-							fallback()
+							return
 						end
+						fallback()
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
@@ -82,10 +118,18 @@ return {
 					{ name = "path", option = { trailin_slash = true }, priority = 4 },
 					-- { name = "latex_symbols", priority = 2 },
 					-- { name = "cmp_zotcite" },
+					{ name = "copilot" },
 				}, {
 					{ name = "buffer" },
 				}),
 			})
 		end,
+	},
+	{
+		"folke/lazydev.nvim",
+		ft = { "lua" },
+		opts = {
+			lspconfig = true,
+		},
 	},
 }

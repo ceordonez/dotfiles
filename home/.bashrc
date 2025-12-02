@@ -132,7 +132,7 @@ export OMP_NUM_THREADS=1
 
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export WORKON_HOME=~/.virtualenvs   # Optional
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+source /usr/share/virtualenvwrapper/uv-virtualenvwrapper.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -7,11 +7,9 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			build = function()
-				pcall(vim.cmd, "MasonUpdate")
-			end,
+		lazy = true,
+		opts = {
+			auto_install = true,
 		},
 	},
 	{
@@ -47,37 +45,29 @@ return {
 			-- Automatically format on save
 			autoformat = false,
 		},
-		config = function(_, opts)
+		lazy = false,
+		config = function()
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- local lspconfig = require("lspconfig")
-			-- local lspconfig = vim.lsp.config
-			--local lsp_defaults = lspconfig.util.default_config
-			--local lsp_defaults = vim.lsp.config"util"
-
-			--lspconfig.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, lsp_capabilities)
-
 			vim.lsp.config.capabilities = lsp_capabilities
 
-			require("mason").setup({})
-
-			-- Python LSP
+			-- Apply global diagnostics settings
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 
 			local util = require("lspconfig.util")
 			--- Get python path considering local virtual environment folders
 			local function get_python_path()
 				local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd()) or ""
-				if vim.fn.executable(cwd .. "/.virtualenvs/bin/python3") == 1 then
-					return cwd .. "/.virtualenvs/bin/python3"
-                elseif vim.env.VIRTUAL_ENV then
-                    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+				if vim.fn.executable(cwd .. "/.venvs/bin/python3") == 1 then
+					return cwd .. "/.venvs/bin/python3"
+				elseif vim.env.VIRTUAL_ENV then
+					return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python3")
 				else
 					return "python3"
 				end
 			end
 
 			vim.lsp.config("basedpyright", {
+				capabilities = capabilities,
 				settings = {
 					python = {
 						pythonPath = get_python_path(),
@@ -95,8 +85,12 @@ return {
 					},
 				},
 			})
+			-- Enable Python LSP
+			vim.lsp.enable("basedpyright")
 
+			-- LaTeX LSP
 			vim.lsp.config("ltex_plus", {
+				capabilities = capabilities,
 				filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text" },
 				settings = {
 					ltex = {
@@ -111,14 +105,13 @@ return {
 					},
 				},
 			})
-
+			-- Enable LaTeX LSP
 			vim.lsp.enable("ltex_plus")
-            vim.lsp.enable('basedpyright')
-			--lspconfig("lua_ls")
-			-- vim.lsp.config("ltex", ltex_setup)
-			-- vim.lsp.enable("ltex")
+
+			-- Markdown LSP
 			vim.lsp.config("marksman", {
-				on_attach = function(client, bufnr)
+				capabilities = capabilities,
+				on_attach = function(client)
 					if client.name == "marksman" then
 						vim.diagnostic.enable(false)
 						vim.opt_local.spell = true
@@ -126,39 +119,12 @@ return {
 					end
 				end,
 			})
-            -- vim.lsp.enable("marksman")
-			-- lspconfig("r_language_server", {})
-			-- lspconfig("bashls", {})
 
+			-- Apply global diagnostics settings
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
-	{
-		"folke/lazydev.nvim",
-		opts = {
-			lspconfig = true,
-		},
-	},
-	--{
-	--	"ray-x/lsp_signature.nvim",
-	--	event = "VeryLazy",
-	--	opts = {
-	--		bind = true,
-	--		hint_enable = true,
-	--		doc_lines = 0,
-	--		floating_window = false,
-	--		toggle_key = "<C-i>",
-	--		select_signature_key = "<C-l>",
-	--		floating_window_above_cur_line = true,
-	--		handler_opts = {
-	--			border = "rounded",
-	--		},
-	--	},
-	--	config = function(_, opt)
-	--		require("lsp_signature").setup(opts)
-	--	end,
-	--},
 }
