@@ -84,7 +84,7 @@ end
 -- 1. Initialize and import output once when the file is read.
 -- Uses BufReadPost to ensure file is loaded, and a shared group.
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = { "*.ipynb", "*.md" }, -- Added *.md for Jupytext
+    pattern = { "*.ipynb" }, -- Added *.md for Jupytext
     callback = imb,
     group = molten_augroup,
 })
@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- 2. Automatically export output chunks to a jupyter notebook on write
 vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "*.ipynb", "*.md" },
+	pattern = { "*.ipynb" },
 	callback = function()
 		if require("molten.status").initialized() == "Molten" then
 			vim.cmd("MoltenExportOutput!")

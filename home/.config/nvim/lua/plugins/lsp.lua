@@ -57,8 +57,8 @@ return {
 			--- Get python path considering local virtual environment folders
 			local function get_python_path()
 				local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd()) or ""
-				if vim.fn.executable(cwd .. "/.venvs/bin/python3") == 1 then
-					return cwd .. "/.venvs/bin/python3"
+				if vim.fn.executable(cwd .. "/.venv/bin/python3") == 1 then
+					return cwd .. "/.venv/bin/python3"
 				elseif vim.env.VIRTUAL_ENV then
 					return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python3")
 				else
