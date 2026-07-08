@@ -68,13 +68,13 @@ return {
 
 			vim.lsp.config("basedpyright", {
 				capabilities = capabilities,
+				before_init = function(_, config)
+					config.settings.basedpyright.analysis.pythonPath = get_python_path()
+				end,
 				settings = {
-					python = {
-						pythonPath = get_python_path(),
-					},
 					basedpyright = {
 						disableOrganizeImports = true,
-						venvPath = ".virtualenvs",
+						-- venvPath = ".virtualenvs",
 						analysis = {
 							autoSearchPaths = true,
 							diagnosticMode = "workspace",
