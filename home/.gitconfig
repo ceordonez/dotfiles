@@ -11,10 +11,8 @@
     ldiff = difftool -y -t latex
     wdiff = diff --color-words --ignore-all-space
 [credential]
-	helper = cache
-	helper = 
-	helper = /usr/local/bin/git-credential-manager
 	credentialStore = gpg
+	helper = pass
 [credenial "https://git.overleaf.com"]
 	username = ceordonezv@gmail.com
 	helper = cache

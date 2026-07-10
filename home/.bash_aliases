@@ -18,4 +18,4 @@ alias oldvim='\vi'
 alias vimdiff='nvim -d'
 
 alias climdal='ssh -X ordonez@climdal3.unige.ch'
-alias dptrp1='~/.virtualenvs/quaderno/bin/dptrp1 --addr 192.168.1.32'
+alias dptrp1='~/.virtualenvs/quaderno/bin/dptrp1 --addr 192.168.1.13'

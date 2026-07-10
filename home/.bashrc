@@ -124,7 +124,7 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
-export EDITOR='/snap/bin/nvim'
+export EDITOR='/usr/bin/nvim'
 
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
