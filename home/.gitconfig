@@ -10,9 +10,6 @@
     logrl = log --pretty=format:\"%aN %ad %n  - %s\" --date=short
     ldiff = difftool -y -t latex
     wdiff = diff --color-words --ignore-all-space
-[credential]
-	credentialStore = gpg
-	helper = pass
 [credenial "https://git.overleaf.com"]
 	username = ceordonezv@gmail.com
 	helper = cache
