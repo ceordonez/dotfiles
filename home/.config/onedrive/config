@@ -41,7 +41,8 @@
 #debug_https = "false"
 
 ## This setting controls whether 'inotify' events should be delayed or not.
-#delay_inotify_processing = "false"
+delay_inotify_processing = "true"
+inotify_delay = "10"
 
 ## This option determines whether the client will conduct integrity validation on files downloaded from Microsoft OneDrive.
 #disable_download_validation = "false"
@@ -80,10 +81,10 @@
 #file_fragment_size = "10"
 
 ## This setting controls the application HTTP protocol version, downgrading to HTTP/1.1 when enabled.
-#force_http_11 = "false"
+force_http_11 = "true"
 
 ## This option, when enabled, forces the client to use a 'session' upload, which, when the 'file' is uploaded by the session, this includes the local timestamp of the file
-#force_session_upload = "false"
+force_session_upload = "true"
 
 ## This setting controls the application IP protocol used when communicating with Microsoft OneDrive.
 #ip_protocol_version = "0"
@@ -137,7 +138,7 @@
 #resync_auth = "false"
 
 ## This option controls which directories are excluded from sync.
-#skip_dir = ""
+skip_dir = ".venv|__pycache__|node_modules|.git|.cache|.ipynb_checkpoints"
 
 ## When enabled, skip_dir matches must be strict, full path matches only.
 #skip_dir_strict_match = "false"
@@ -146,7 +147,7 @@
 #skip_dotfiles = "false"
 
 ## This setting controls which files are skipped during sync.
-#skip_file = "~*|.~*|*.tmp|*.swp|*.partial"
+skip_file = "~*|.~*|*.tmp|*.swp|*.partial|*.log"
 
 ## Skip syncing files larger than this size in MB.
 #skip_size = "0"
@@ -188,7 +189,7 @@
 #use_intune_sso = "true"
 
 ## This configuration option controls the application function to move online deleted files to a 'Recycle Bin' on your system.
-#use_recycle_bin = "false"
+use_recycle_bin = "true"
 
 ## Custom User-Agent string for requests to OneDrive. If you change this, you will get throttled by the Microsoft Graph API. Change with caution.
 #user_agent = "ISV|abraunegg|OneDrive Client for Linux/vX.Y.Z-A-bcdefghi"
@@ -218,6 +219,4 @@
 #write_xattr_data = "false"
 
 display_manager_integration = "true"
-delay_inotify_processing = "true"
-inotify_delay = "10"
-force_session_upload = "true"
+

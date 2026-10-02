@@ -46,7 +46,7 @@ return {
 				return require("CopilotChat.selection").buffer(source)
 			end,
 			system_prompt = "You are an AI programming assistant. Always provide helpful, accurate, and concise responses.",
-			model = "gpt-4o", -- GPT-4o
+			-- model = "gpt-4o", -- GPT-4o
 			temperature = 0.1,
 			context = "buffers", --
 			mappings = {

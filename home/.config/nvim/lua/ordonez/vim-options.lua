@@ -88,3 +88,9 @@ vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close 
 vim.keymap.set("n", "<localleader>md", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
 -- if you work with html outputs:
 vim.keymap.set("n", "<localleader>mx", ":MoltenOpenInBrowser<CR>", { desc = "open output in browser", silent = true })
+
+vim.keymap.set("n", "<leader>x", function()
+	local line = vim.api.nvim_get_current_line()
+	local new = line:find("%[ %]") and line:gsub("%[ %]", "[x]", 1) or line:gsub("%[x%]", "[ ]", 1)
+	vim.api.nvim_set_current_line(new)
+end, { buffer = true, desc = "Toggle checkbox" })

@@ -119,6 +119,10 @@ return {
 					end
 				end,
 			})
+			vim.lsp.config("vale_ls", {
+				filetypes = { "markdown" },
+                configPath = vim.fn.expand("~/.config/vale/.vale.ini"),
+			})
 
 			-- Apply global diagnostics settings
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

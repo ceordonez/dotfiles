@@ -14,6 +14,13 @@ return {
 			tex = { "latexindent" },
 			yaml = { "yamlfmt" },
 		},
+        formatters = {
+            latexindent = {
+                command = "latexindent",
+                args = { "-s", "-g", "/dev/null", "$FILENAME" },
+                stdin = false,
+            },
+        },
 	},
 	keys = {
 		{

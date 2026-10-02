@@ -31,22 +31,39 @@ return {
 					ls.jump(-1)
 				end
 			end, { silent = true })
+			-- vim.keymap.set({ "i", "s" }, "<C-e>", function()
+			-- 	if ls.choice_active() then
+			-- 		ls.change_choice(1)
+			-- 	end
+			-- end, { silent = true })
 		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
+        dependencies = {"L3MON4D3/LuaSnip"},
 		config = function()
 			local cmp = require("cmp")
 			local copilot_suggestion = require("copilot.suggestion")
 			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/luasnippets" })
 
-			opts = function(_, opts)
-				opts.sources = opts.sources or {}
-				table.insert(opts.sources, { name = "lazydev", group_index = 0 })
-				return opts
-			end
+			-- opts = function(_, opts)
+			-- 	opts.sources = opts.sources or {}
+			-- 	table.insert(opts.sources, { name = "lazydev", group_index = 0 })
+			-- 	return opts
+			-- end
 			cmp.setup({
+				sources = cmp.config.sources({
+					{ name = "lazydev", group_index = 0 },
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "path", option = { trailing_slash = true } },
+					{ name = "copilot" },
+				}, {
+					{ name = "buffer" },
+				}),
+
 				snippet = {
 					-- REQUIRED - you must specify a snippet engine
 					expand = function(args)
@@ -65,7 +82,16 @@ return {
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
+					["<C-e>"] = cmp.mapping(function(fallback)
+                        if luasnip.choice_active() then
+                            luasnip.change_choice(1)
+                        elseif cmp.visible() then
+                            cmp.abort()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
 					["<C-l>"] = cmp.mapping(function(fallback)
 						if copilot_suggestion.is_visible() then
 							copilot_suggestion.accept()
@@ -84,10 +110,19 @@ return {
 					["<M-n>"] = cmp.mapping(function(fallback)
 						if copilot_suggestion.is_visible() then
 							copilot_suggestion.next()
-							return
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
 						end
-						fallback()
 					end, { "i", "s" }),
+                    ["<M-b>"] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
@@ -110,17 +145,6 @@ return {
 						end
 						fallback()
 					end, { "i", "s" }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					--{ name = "vsnip" }, -- For vsnip users.
-					{ name = "luasnip" }, -- For luasnip users.
-					{ name = "path", option = { trailin_slash = true }, priority = 4 },
-					-- { name = "latex_symbols", priority = 2 },
-					-- { name = "cmp_zotcite" },
-					{ name = "copilot" },
-				}, {
-					{ name = "buffer" },
 				}),
 			})
 		end,
