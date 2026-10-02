@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="/usr/share/texlive/:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export MPLCONFIGDIR="$HOME/.config/matplotlib"
 # Virtual Env
@@ -36,3 +37,4 @@ export PATH="$HOME/Documents/MODELS/pestpp-5.2.7-linux:$PATH"
 # export LAPACK=/usr/lib/liblapack.so
 # export ATLAS=/usr/lib/libatlas.so
 # export BLAS=/usr/lib/libblas.so
+#
