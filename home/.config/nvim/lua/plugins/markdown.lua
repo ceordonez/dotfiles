@@ -29,7 +29,18 @@ return {
 		"OXY2DEV/markview.nvim",
 		lazy = false, -- markview recommends not lazy-loading it
 		config = function()
-			require("markview").setup({})
+			require("markview").setup({
+				markdown = {
+					list_items = {
+						indent = 2, -- Indentation level for list items
+						shift_width = 2, -- Shift width for list items
+						marker_minus = { add_padding = false },
+						marker_plus = { add_padding = false },
+						marker_star = { add_padding = false },
+						marker_dot = { add_padding = false },
+					},
+				},
+			})
 
 			-- Your config
 		end,
