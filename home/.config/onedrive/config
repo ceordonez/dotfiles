@@ -219,4 +219,11 @@ use_recycle_bin = "true"
 #write_xattr_data = "false"
 
 display_manager_integration = "true"
+<<<<<<< Updated upstream
 
+=======
+delay_inotify_processing = "true"
+inotify_delay = "10"
+force_session_upload = "true"
+skip_dir = ".venv|__pycache__|*.venv|node_modules"
+>>>>>>> Stashed changes

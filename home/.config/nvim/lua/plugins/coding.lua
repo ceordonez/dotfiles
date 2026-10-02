@@ -4,10 +4,6 @@ return {
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "lewis6991/async.nvim" },
-<<<<<<< HEAD
-
-=======
->>>>>>> 5bf0b3f (Adding onedrive configuration, small changes to neovim config: new luasnips for markdown, fix model for copilot, mapping for list in markdown and small changes to cmp config)
 			-- { "nvim-treesitter/nvim-treesitter" }
 		},
 		ft = { "python", "lua" },

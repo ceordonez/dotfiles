@@ -1,67 +1,27 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false, -- main branch does not support lazy-loading
 		build = ":TSUpdate",
-		-- event = { "BufReadPost", "BufNewFile" }, -- lazy-load
-		-- dependencies = {
-		-- 	"nvim-treesitter/nvim-treesitter-textobjects", -- Ensure this is here!
-		-- },
 		config = function()
-			require("nvim-treesitter").setup({
-				auto_install = true,
-				ensure_installed = {
-					"html",
-					"latex",
-					"markdown",
-					"markdown_inline",
-					"yaml",
-                    "lua",
-				},
-				sync_install = false,
-				highlight = {
-					enable = true,
-					disable = { "latex" },
-				},
-				indent = { enable = true },
-				-- textobjects = {
-				-- 	move = {
-				-- 		enable = true,
-				-- 		set_jumps = false, -- you can change this if you want.
-				-- 		goto_next_start = {
-				-- 			--- ... other keymaps
-				-- 			["]b"] = { query = "@code_cell.inner", desc = "next code block" },
-				-- 		},
-				-- 		goto_previous_start = {
-				-- 			--- ... other keymaps
-				-- 			["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
-				-- 		},
-				-- 	},
-				-- 	select = {
-				-- 		enable = true,
-				-- 		lookahead = true, -- you can change this if you want
-				-- 		keymaps = {
-				-- 			--- ... other keymaps
-				-- 			["ib"] = { query = "@code_cell.inner", desc = "in block" },
-				-- 			["ab"] = { query = "@code_cell.outer", desc = "around block" },
-				-- 		},
-				-- 	},
-				-- 	swap = { -- Swap only works with code blocks that are under the same
-				-- 		-- markdown header
-				-- 		enable = true,
-				-- 		swap_next = {
-				-- 			--- ... other keymap
-				-- 			["<leader>sbl"] = "@code_cell.outer",
-				-- 		},
-				-- 		swap_previous = {
-				-- 			--- ... other keymap
-				-- 			["<leader>sbh"] = "@code_cell.outer",
-				-- 		},
-				-- 	},
-				-- },
+			local ts = require("nvim-treesitter")
+			ts.setup({})
+
+			-- replaces ensure_installed (async, skips already-installed parsers)
+			ts.install({ "html", "latex", "markdown", "markdown_inline", "yaml", "lua", "vimdoc" })
+
+			-- replaces highlight = { enable = true }
+			-- latex is left out on purpose, matching your old `disable = { "latex" }`
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "markdown", "html", "yaml", "lua" },
+				callback = function()
+					vim.treesitter.start()
+					-- replaces indent = { enable = true }
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
 			})
-			-- vim.o.foldmethod = "expr"
-			-- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-			-- vim.o.foldenable = false
 		end,
 	},
 }
+
