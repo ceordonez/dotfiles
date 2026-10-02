@@ -7,7 +7,7 @@ alias gam='cd ~/Dropbox/Cesar/PostDoc/Projects/Gambia/'
 
 alias hal='cd ~/OneDrive/Research/01_Projects/2024_HeatBudge_Hallwil/'
 alias bre='cd ~/OneDrive/Research/01_Projects/2025_Bretaye/'
-alias nda='cd ~/OneDrive/Research/01_Projects/01_NDA/'
+alias nda='cd ~/OneDrive/Research/08_Services/01_NDA/'
 alias res="cd ~/OneDrive/Research"
 
 alias copaper='cd /home/cesar/Dropbox/Cesar/PhD/My_Papers/01_Ordonez_et_al/Paper_revision'
