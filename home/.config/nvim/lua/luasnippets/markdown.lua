@@ -7,7 +7,7 @@ local rep = require("luasnip.extras").rep
 
 -- Status checkbox: toggle between [ ] and [x] with your change-choice key
 local function check(pos)
-  return c(pos, { t("[ ]"), t("[x]") })
+	return c(pos, { t("[ ]"), t("[x]") })
 end
 
 local fence = "```"
@@ -21,6 +21,25 @@ local function more_tasks()
 		}),
 	})
 end
+
+local function more_actions()
+	return sn(nil, {
+		c(1, {
+			t(""),
+			sn(nil, {
+				t({ "", "- [ ] " }),
+				i(1, "task"),
+				t(" ("),
+				i(2, "who"),
+				t(", due "),
+				i(3, "YYYY-MM-DD"),
+				t(")"),
+				d(4, more_actions, {}),
+			}),
+		}),
+	})
+end
+
 return {
 	s(
 		{ trig = "nextsteps", dscr = "Next steps for a paper" },
@@ -245,7 +264,7 @@ return {
 				}),
 				i(12, "1"),
 				i(13, "Journal name"),
-                i(14, "e.g max 5000 words"),
+				i(14, "e.g max 5000 words"),
 				i(15, "e.g. max 8 figures"),
 				i(16, "Link or notes"),
 				i(17, "Project name"),
@@ -253,10 +272,9 @@ return {
 		)
 	),
 
-      s(
-    { trig = "readme", dscr = "Research project README" },
-    fmta(
-      [[
+	s(
+		{ trig = "readme", dscr = "Research project README" },
+		fmta([[
 # Project: <> — <>
 
 ## Overview
@@ -312,33 +330,226 @@ python scripts/03_figures.py <>
 ## Notes
 Any decisions made during analysis worth remembering:
 - <>
-]],
-      {
-        i(1, "Project name"),
-        i(2, "Site/Period"),
-        i(3, "One paragraph: what question are you answering, why it matters, and what makes this dataset/approach unique."),
-        check(4), check(5), check(6), check(7),
-        i(8, "Cesar Ordoñez"),
-        i(9, "Name (Institution)"),
-        i(10, "Name (thesis chapter)"),
-        i(11, "Source"), i(12, "Type"), i(13, "data/raw/.../"), i(14, "YYYY-YYYY"), i(15, "Notes"),
-        i(16, "Issue (date, cause, how handled)"),
-        i(17, "../../../05_Tools/lake_plotting"),
-        i(18, "2024"),
-        rep(18),
-        rep(18),
-        i(19, "02_Publications/YYYY_Name/"),
-        i(20, "Funder grant number — \"Title\""),
-        i(21, "Decision and rationale"),
-      }
-    )
-  ),
+]], {
+			i(1, "Project name"),
+			i(2, "Site/Period"),
+			i(
+				3,
+				"One paragraph: what question are you answering, why it matters, and what makes this dataset/approach unique."
+			),
+			check(4),
+			check(5),
+			check(6),
+			check(7),
+			i(8, "Cesar Ordoñez"),
+			i(9, "Name (Institution)"),
+			i(10, "Name (thesis chapter)"),
+			i(11, "Source"),
+			i(12, "Type"),
+			i(13, "data/raw/.../"),
+			i(14, "YYYY-YYYY"),
+			i(15, "Notes"),
+			i(16, "Issue (date, cause, how handled)"),
+			i(17, "../../../05_Tools/lake_plotting"),
+			i(18, "2024"),
+			rep(18),
+			rep(18),
+			i(19, "02_Publications/YYYY_Name/"),
+			i(20, 'Funder grant number — "Title"'),
+			i(21, "Decision and rationale"),
+		})
+	),
 
-  -- Extra data source row
-  s(
-    { trig = "rrow", dscr = "README data source table row" },
-    fmta("| <> | <> | <> | <> | <> |", {
-      i(1, "Source"), i(2, "Type"), i(3, "data/raw/.../"), i(4, "YYYY-YYYY"), i(5, "Notes"),
-    })
-  ),
+	-- Extra data source row
+	s(
+		{ trig = "rrow", dscr = "README data source table row" },
+		fmta("| <> | <> | <> | <> | <> |", {
+			i(1, "Source"),
+			i(2, "Type"),
+			i(3, "data/raw/.../"),
+			i(4, "YYYY-YYYY"),
+			i(5, "Notes"),
+		})
+	),
+	s(
+		{ trig = "meetnotes", dscr = "Meeting notes" },
+		fmt(
+			[[
+# {}
+
+**Date:** {}
+**Time:** {}
+**Location / link:** {}
+**Type:** {}
+
+## Attendees
+- {}
+
+## Agenda
+- {}
+
+## Discussion
+{}
+
+## Decisions
+- {}
+
+## Action items
+- [ ] {} ({}, due {}){}
+
+## Next meeting
+{}
+
+## Notes
+{}
+]],
+			{
+				i(1, "Meeting title"),
+				f(function()
+					return os.date("%Y-%m-%d")
+				end),
+				i(2, "HH:MM"),
+				i(3, "Room / Zoom link"),
+				c(4, {
+					t("Project meeting"),
+					t("Supervision"),
+					t("Lab meeting"),
+					t("Collaborator call"),
+					t("Department"),
+					t("Other"),
+				}),
+				i(5, "Name 1, Name 2"),
+				i(6, "Topic"),
+				i(7, "Key points discussed"),
+				i(8, "What was decided"),
+				i(9, "task"),
+				i(10, "who"),
+				i(11, "YYYY-MM-DD"),
+				d(12, more_actions, {}),
+				i(13, "Date, or TBD"),
+				i(0),
+			}
+		)
+	),
+	s(
+		{ trig = "presnotes", dscr = "Presentation notes" },
+		fmt(
+			[[
+# {}
+
+**Event:** {}
+**Date:** {}
+**Time / duration:** {}
+**Location / link:** {}
+**Audience:** {}
+**Format:** {}
+
+## Goal
+{}
+
+## Key messages
+1. {}
+
+## Outline
+
+| Slide / section | Time | Content |
+|---|---|---|
+| {} | {} | {} |
+
+## Speaker notes
+{}
+
+## Anticipated questions
+- **Q:** {}
+  **A:** {}
+
+## To prepare
+- [ ] {}
+
+## Follow-up
+{}
+
+## Notes
+{}
+]],
+			{
+				i(1, "Presentation title"),
+				i(2, "Conference / seminar / meeting"),
+				f(function()
+					return os.date("%Y-%m-%d")
+				end),
+				i(3, "HH:MM, 15 min + 5 min questions"),
+				i(4, "Room / Zoom link"),
+				i(5, "Who will be listening"),
+				c(6, {
+					t("Talk"),
+					t("Poster"),
+					t("Lightning talk"),
+					t("Seminar"),
+					t("Defence"),
+					t("Other"),
+				}),
+				i(7, "What the audience should take away"),
+				i(8, "Main message"),
+				i(9, "Intro"),
+				i(10, "2 min"),
+				i(11, "Motivation and question"),
+				i(12, "What to say, transitions, things not to forget"),
+				i(13, "Likely question"),
+				i(14, "Prepared answer"),
+				i(15, "Slides, figures, test the link"),
+				i(16, "Contacts, feedback, things to send afterwards"),
+				i(0),
+			}
+		)
+	),
+
+	s("supmeeting", {
+		t("# Supervision Meeting "),
+		f(function()
+			return os.date("%Y-%m-%d")
+		end, {}),
+		t({ "", "" }),
+		t({ "## Student", "" }),
+		i(1, "StudentName"),
+		t({ "", "", "## Thesis status", "- Chapter: " }),
+		i(2, ""),
+		t({ "", "- Deadline: " }),
+		i(3, ""),
+		t({ "", "", "## Progress since last meeting", "- " }),
+		i(4, ""),
+		t({ "", "", "## Discussed", "- " }),
+		i(5, ""),
+		t({ "", "", "## Decisions made", "- " }),
+		i(6, ""),
+		t({ "", "", "## Action points", "- [ ] Student: " }),
+		i(7, ""),
+		t({ "", "- [ ] Cesar: " }),
+		i(8, ""),
+		t({ "", "", "## Waiting on", "- " }),
+		i(9, "None"),
+		t({ "", "", "## Next meeting", "" }),
+		i(0, "TBC"),
+	}),
+	s("meeting", {
+		t("# Meeting "),
+		f(function()
+			return os.date("%Y-%m-%d") -- auto-inserts today's date
+		end, {}),
+		t({ "", "", "## Present", "" }),
+		i(1, "Cesar, StudentName"),
+		t({ "", "", "## Progress since last meeting", "- " }),
+		i(2, ""),
+		t({ "", "", "## Discussed", "- " }),
+		i(3, ""),
+		t({ "", "", "## Decisions made", "- " }),
+		i(4, ""),
+		t({ "", "", "## Action points", "- [ ] Student: " }),
+		i(5, ""),
+		t({ "", "- [ ] Cesar: " }),
+		i(6, ""),
+		t({ "", "", "## Next meeting", "" }),
+		i(7, "TBC"),
+		i(0, ""),
+	}),
 }
