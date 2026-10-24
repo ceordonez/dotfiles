@@ -7,7 +7,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term /home/cesar/.local/bin/kitty
+set $term ~/.local/bin/kitty
 # set $term foot
 set $menu wofi --show drun
 set $browser firefox
@@ -33,22 +33,8 @@ font pango:monospace 10
 client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa #89b4fa
 client.focused_inactive #45475a #1e1e2e #a6adc8 #45475a #45475a
 client.unfocused        #313244 #1e1e2e #6c7086 #313244 #313244
-### Teclado (ajusta a tu layout: us, latam, ch, etc.)
-input type:keyboard {
-    xkb_layout ch
-    # xkb_options caps:escape
-}
 
-### Touchpad (laptops)
-input type:touchpad {
-    tap enabled
-    natural_scroll enabled
-    dwt enabled
-}
 
-### Monitores (revisa nombres con: swaymsg -t get_outputs)
-output eDP-1 resolution 1920x1080 position 0,0
-output DP-5 resolution 3840x2160 position 1920,0 scale 1.5
 
 ### Reposo y bloqueo de pantalla
 exec swayidle -w \
@@ -141,7 +127,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
-exec_always /home/cesar/.local/bin/autotiling
+exec_always ~/.local/bin/autotiling
 
 ### Scratchpad (terminal flotante a demanda)
 bindsym $mod+Shift+minus move scratchpad
@@ -195,6 +181,7 @@ exec dropbox start
 # Necesario para compartir pantalla y portales en Wayland
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-bindsym $mod+Shift+p exec /home/cesar/.config/sway/powermenu.sh
+bindsym $mod+Shift+p exec ~/.config/sway/powermenu.sh
 
 include /etc/sway/config.d/*
+include ~/.config/sway/local.conf

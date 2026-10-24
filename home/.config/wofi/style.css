@@ -1,0 +1,68 @@
+/* ~/.config/wofi/style.css
+   Paleta igual que Sway y Waybar. */
+
+* {
+  font-family: "Hack Nerd Font Mono", "Hack Nerd Font", monospace;
+  font-size: 14px;
+}
+
+window {
+  margin: 0;
+  background-color: rgba(30, 30, 46, 0.92);
+  border: 2px solid #89b4fa;
+  border-radius: 12px;
+}
+
+#outer-box {
+  margin: 12px;
+  background-color: transparent;
+}
+
+#input {
+  margin: 0 0 10px 0;
+  padding: 8px 12px;
+  color: #cdd6f4;
+  background-color: #313244;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+#input:focus {
+  border: none;
+  box-shadow: 0 0 0 1px #89b4fa;
+}
+
+#scroll {
+  margin: 0;
+  background-color: transparent;
+}
+
+#inner-box {
+  background-color: transparent;
+}
+
+#entry {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+#entry:selected {
+  background-color: #89b4fa;
+  outline: none;
+}
+
+#text {
+  margin-left: 8px;
+  color: #cdd6f4;
+}
+
+#entry:selected #text {
+  color: #1e1e2e;
+  font-weight: bold;
+}
+
+#img {
+  margin-right: 4px;
+}

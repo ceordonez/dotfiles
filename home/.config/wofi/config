@@ -1,0 +1,20 @@
+## ~/.config/wofi/config
+mode=drun
+width=520
+height=400
+location=center
+prompt=Search apps...
+term=kitty
+
+# Búsqueda
+insensitive=true
+matching=fuzzy
+no_actions=true
+
+# Aspecto
+allow_images=true
+image_size=28
+allow_markup=true
+hide_scroll=true
+columns=1
+gtk_dark=true
