@@ -152,4 +152,6 @@ if [ -d "$GOTM_PATH" ]; then
   export PATH="$GOTM_PATH:$PATH"
 fi
 
-eval "$(oh-my-posh init bash --config ~/.mytheme.omp.json)"
+export PATH="$HOME/.local/bin:$PATH"
+# eval "$(oh-my-posh init bash --config ~/.mytheme.omp.json)"
+eval "$(oh-my-posh init bash --config ~/.catppuccin.omp.json)"
