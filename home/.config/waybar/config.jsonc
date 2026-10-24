@@ -1,0 +1,52 @@
+{
+  "position": "top",
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["network", "pulseaudio", "battery", "clock"],
+
+  "clock": {
+    "format": "<span foreground='#f5c2e7'>\uf017 </span>{:%a %d %b %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+        "mode": "month",
+        "format": {
+            "today": "<span color='#89b4fa'><b>{}</b></span>"
+        }
+    }
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span size='13000' foreground='#a6e3a1'>{icon}  </span>{capacity}%",
+    "format-warning": "<span size='13000' foreground='#f9e2af'>{icon} </span>{capacity}%",
+    "format-critical": "<span size='13000' foreground='#f38ba8'>{icon} </span>{capacity}%",
+    "format-charging": "<span size='13000' foreground='#a6e3a1'>\uf0e7 </span>{capacity}%",
+    "format-plugged": "<span size='13000' foreground='#a6e3a1'>\uf1e6 </span>{capacity}%",
+    "format-alt": "<span size='13000' foreground='#a6e3a1'>{icon} </span>{time}",
+    "format-full": "<span size='13000' foreground='#a6e3a1'>\uf240 </span>{capacity}%",
+    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+    "tooltip-format": "{time}"
+  },
+
+  "network": {
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'>\uf1eb\u2009 </span>{essid}",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>\uf0ac\u2009 </span>{ifname}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "<span size='13000' foreground='#f38ba8'>\uf071\u2009 </span>Disconnected",
+    "tooltip-format-wifi": "Signal strength: {signalStrength}%"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "\uf026",
+    "format-icons": {
+      "default": ["\uf026", "\uf027", "\uf028"]
+    },
+    "scroll-step": 5,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  }
+}

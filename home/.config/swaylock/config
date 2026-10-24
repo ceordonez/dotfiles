@@ -1,0 +1,59 @@
+# ~/.config/swaylock/config   (Catppuccin Mocha)
+# Los colores van sin '#', en formato RRGGBB o RRGGBBAA.
+
+# --- Fondo ---
+color=1e1e2e
+# Para usar una imagen en vez de color liso, descomenta y pon tu ruta:
+# image=/home/cesar/Pictures/fondo.jpg
+# scaling=fill
+
+# --- Comportamiento ---
+daemonize
+show-failed-attempts
+indicator-caps-lock
+# OJO: no actives "ignore-empty-password" si usas la huella, porque la huella
+# se activa al pulsar Enter con el campo vacío.
+
+# --- Indicador ---
+indicator-radius=90
+indicator-thickness=8
+font=MesloLGS Nerd Font
+font-size=22
+
+# Normal
+inside-color=1e1e2eee
+ring-color=89b4fa
+line-color=00000000
+text-color=cdd6f4
+separator-color=00000000
+
+# Al teclear
+key-hl-color=a6e3a1
+bs-hl-color=f38ba8
+caps-lock-key-hl-color=f9e2af
+caps-lock-bs-hl-color=f38ba8
+
+# Verificando
+inside-ver-color=1e1e2eee
+ring-ver-color=cba6f7
+line-ver-color=00000000
+text-ver-color=cdd6f4
+
+# Contraseña incorrecta
+inside-wrong-color=1e1e2eee
+ring-wrong-color=f38ba8
+line-wrong-color=00000000
+text-wrong-color=f38ba8
+
+# Campo despejado
+inside-clear-color=1e1e2eee
+ring-clear-color=f9e2af
+line-clear-color=00000000
+text-clear-color=f9e2af
+
+screenshots
+effect-blur=7x5
+effect-vignette=0.5:0.5
+fade-in=0.2
+clock
+indicator

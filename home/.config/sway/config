@@ -1,0 +1,200 @@
+# ~/.config/sway/config
+# Config inicial de Sway. Mod = tecla Super (Windows).
+
+### Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term /home/cesar/.local/bin/kitty
+# set $term foot
+set $menu wofi --show drun
+set $browser firefox
+
+bindsym $mod+Tab exec wofi --show window
+bindsym $mod+Shift+d exec wofi --show run
+
+### Fondo y apariencia
+# output * bg #1e1e2e solid_color
+output * bg ~/.config/backgrounds/mikael-gustafsson-wallpaper-mikael-gustafsson.jpg fill
+default_border pixel 2
+hide_edge_borders smart
+gaps inner 6
+gaps outer 0
+smart_gaps on
+font pango:monospace 10
+
+# Colores de borde: borde, fondo, texto, indicador, borde hijo
+# client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa #89b4fa
+# client.unfocused        #313244 #1e1e2e #6c7086 #313244 #313244
+# client.focused_inactive #45475a #1e1e2e #6c7086 #45475a #45475a
+
+client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa #89b4fa
+client.focused_inactive #45475a #1e1e2e #a6adc8 #45475a #45475a
+client.unfocused        #313244 #1e1e2e #6c7086 #313244 #313244
+### Teclado (ajusta a tu layout: us, latam, ch, etc.)
+input type:keyboard {
+    xkb_layout ch
+    # xkb_options caps:escape
+}
+
+### Touchpad (laptops)
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+### Monitores (revisa nombres con: swaymsg -t get_outputs)
+output eDP-1 resolution 1920x1080 position 0,0
+output DP-5 resolution 3840x2160 position 1920,0 scale 1.5
+
+### Reposo y bloqueo de pantalla
+exec swayidle -w \
+    timeout 600 swaylock -f' \
+    timeout 900 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep swaylock -f'
+
+bindswitch --locked lid:on exec swaylock -f
+
+bindsym $mod+Ctrl+l exec swaylock -f
+
+### Atajos básicos
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+b exec $browser
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Salir de Sway?' -B 'Si, salir' 'swaymsg exit'
+# bindsym $mod+Ctrl+l exec swaylock -f -c 1e1e2e
+
+floating_modifier $mod normal
+
+### Foco (vim-keys y flechas)
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+### Mover ventanas
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+### Workspaces
+# 1 terminal/modelos, 2 navegador, 3 editor/LaTeX, 4 correo y chat,
+# 5 datos/visualización, 6-9 libres
+set $ws1 "1:Data"
+set $ws2 "2:Editor"
+set $ws3 "3:Web"
+set $ws4 "4:Mail"
+set $ws5 "5:Music"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+# Asignación automática de apps a workspaces (ajusta app_id a lo que uses;
+# averigua el app_id con: swaymsg -t get_tree | grep app_id)
+assign [app_id="firefox"] workspace $ws3
+assign [app_id="betterbird"] workspace $ws4
+assign [app_id="org.telegram.desktop"] workspace $ws4
+assign [class="Spotify"] workspace $ws5
+
+### Disposición
+bindsym $mod+v splith
+bindsym $mod+s splitv
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+exec_always /home/cesar/.local/bin/autotiling
+
+### Scratchpad (terminal flotante a demanda)
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+### Redimensionar (modo: $mod+r, luego h/j/k/l o flechas, Esc para salir)
+mode "resize" {
+    bindsym $left resize shrink width 40px
+    bindsym $down resize grow height 40px
+    bindsym $up resize shrink height 40px
+    bindsym $right resize grow width 40px
+    bindsym Left resize shrink width 40px
+    bindsym Down resize grow height 40px
+    bindsym Up resize shrink height 40px
+    bindsym Right resize grow width 40px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Ventanas flotantes por defecto
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+
+### Multimedia (volumen con wpctl/pactl, brillo con brightnessctl)
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
+
+### Capturas de pantalla (grim + slurp)
+bindsym Print exec grim ~/Pictures/captura-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/captura-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+
+### Barra de estado
+bar {
+    swaybar_command waybar
+}
+
+### Servicios al iniciar
+exec mako
+exec nm-applet --indicator
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec dropbox start
+
+# Necesario para compartir pantalla y portales en Wayland
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+bindsym $mod+Shift+p exec /home/cesar/.config/sway/powermenu.sh
+
+include /etc/sway/config.d/*
