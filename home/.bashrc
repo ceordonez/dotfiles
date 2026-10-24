@@ -154,4 +154,8 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 # eval "$(oh-my-posh init bash --config ~/.mytheme.omp.json)"
-eval "$(oh-my-posh init bash --config ~/.catppuccin.omp.json)"
+# eval "$(oh-my-posh init bash --config ~/.catppuccin.omp.json)"
+# eval "$(oh-my-posh init bash --config ~/.takuya.omp.json)"
+# ~/.bashrc
+
+eval "$(starship init bash)"
