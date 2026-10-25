@@ -184,6 +184,8 @@ exec env XDG_CURRENT_DESKTOP=Unity dropbox start
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 bindsym $mod+Shift+p exec ~/.config/sway/powermenu.sh
+bindsym $mod+Ctrl+k exec ~/.config/sway/keys.sh
 
 include /etc/sway/config.d/*
 include ~/.config/sway/local.conf
+
