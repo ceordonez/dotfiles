@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["sway/workspaces"],
   "modules-center": ["sway/window"],
-  "modules-right": ["network", "pulseaudio", "battery", "clock"],
+  "modules-right": ["tray","network", "pulseaudio", "battery", "clock"],
 
   "clock": {
     "format": "<span foreground='#f5c2e7'>\uf017 </span>{:%a %d %b %H:%M}",
@@ -13,6 +13,11 @@
             "today": "<span color='#89b4fa'><b>{}</b></span>"
         }
     }
+  },
+
+  "tray": {
+     "icon-size": 20,
+     "spacing": 12
   },
 
   "battery": {
@@ -36,7 +41,8 @@
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'>\uf0ac\u2009 </span>{ifname}",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "<span size='13000' foreground='#f38ba8'>\uf071\u2009 </span>Disconnected",
-    "tooltip-format-wifi": "Signal strength: {signalStrength}%"
+    "tooltip-format-wifi": "Signal strength: {signalStrength}%",
+    "on-click": "kitty e-e nmtui"
   },
 
   "pulseaudio": {

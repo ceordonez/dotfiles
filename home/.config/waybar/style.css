@@ -127,3 +127,21 @@ button:hover {
     padding-left: 6px;
     padding-right: 6px;
 }
+
+menu {
+  font-size: 16px;
+  padding: 6px;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  border: 1px solid #45475a;
+  border-radius: 8px;
+}
+
+menuitem {
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+menuitem:hover {
+  background-color: #45475a;
+}
