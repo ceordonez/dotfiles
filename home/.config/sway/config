@@ -113,6 +113,11 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 
+bindsym $mod+Alt+Right move container to output right
+bindsym $mod+Alt+Left  move container to output left
+bindsym $mod+Alt+Shift+Right move workspace to output right
+bindsym $mod+Alt+Shift+Left move workspace to output left
+
 # Asignación automática de apps a workspaces (ajusta app_id a lo que uses;
 # averigua el app_id con: swaymsg -t get_tree | grep app_id)
 assign [app_id="firefox"] workspace $ws3
