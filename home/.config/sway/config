@@ -24,8 +24,8 @@ gaps inner 6
 gaps outer 0
 smart_gaps on
 font pango:MesloLGS Nerd Font 10
-default_floating_border pixel 2
-for_window [floating] border pixel 2
+default_floating_border none
+for_window [floating] border none
 
 # Colores de borde: borde, fondo, texto, indicador, borde hijo
 # client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa #89b4fa

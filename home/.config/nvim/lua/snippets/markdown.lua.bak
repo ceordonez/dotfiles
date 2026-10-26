@@ -552,4 +552,6 @@ Any decisions made during analysis worth remembering:
 		i(7, "TBC"),
 		i(0, ""),
 	}),
-}
+},
+
+require("luasnip").add_snippets("markdown", require("snippets.readme_snippets"))
