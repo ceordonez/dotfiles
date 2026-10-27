@@ -81,14 +81,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 ### Workspaces
-# 1 terminal/modelos, 2 navegador, 3 editor/LaTeX, 4 correo y chat,
-# 5 datos/visualización, 6-9 libres
-set $ws1 "1:Data"
-set $ws2 "2:Editor"
+set $ws1 "1:Claude"
+set $ws2 "2:Terminal"
 set $ws3 "3:Web"
 set $ws4 "4:Mail"
 set $ws5 "5:Music"
-set $ws6 "6"
+set $ws6 "6:LibreOffice"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -124,6 +122,8 @@ assign [app_id="firefox"] workspace $ws3
 assign [app_id="betterbird"] workspace $ws4
 assign [app_id="org.telegram.desktop"] workspace $ws4
 assign [class="Spotify"] workspace $ws5
+assign [app_id="^libreoffice"] workspace $ws6
+assign [class="(?i)^(libreoffice|soffice)"] workspace $ws6
 
 ### Disposición
 bindsym $mod+v splith
@@ -160,6 +160,9 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
+for_window [app_id="betterbird" title="^Write:"] floating enable, resize set 900 700, move position center
+for_window [title="^Text Import"] floating enable, resize set 900 700, move position center
+for_window [window_type="dialog"] floating enable
 
 ### Multimedia (volumen con wpctl/pactl, brillo con brightnessctl)
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
