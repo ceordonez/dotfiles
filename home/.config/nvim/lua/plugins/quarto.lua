@@ -7,9 +7,13 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		ft = { "quarto", "markdown" },
+		keys = {
+			{ "<leader>qp", "<cmd>QuartoPreview<cr>", desc = "Quarto preview", ft = "quarto" },
+			{ "<leader>qc", "<cmd>QuartoClosePreview<cr>", desc = "Close Quarto preview", ft = "quarto" },
+		},
 		config = function()
 			local quarto = require("quarto")
-            -- quarto.activate()
+			-- quarto.activate()
 			quarto.setup({
 				lspFeatures = {
 					-- NOTE: put whatever languages you want here:

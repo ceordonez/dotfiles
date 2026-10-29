@@ -40,10 +40,10 @@ client.unfocused        #313244 #1e1e2e #6c7086 #313244 #313244
 
 ### Reposo y bloqueo de pantalla
 exec swayidle -w \
-    timeout 600 swaylock -f' \
-    timeout 900 'swaymsg "output * power off"' \
+    timeout 240 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
-    before-sleep swaylock -f'
+    timeout 300 'systemctl suspend' \
+    before-sleep 'swaylock -f'
 
 bindswitch --locked lid:on exec swaylock -f
 
@@ -124,6 +124,7 @@ assign [app_id="org.telegram.desktop"] workspace $ws4
 assign [class="Spotify"] workspace $ws5
 assign [app_id="^libreoffice"] workspace $ws6
 assign [class="(?i)^(libreoffice|soffice)"] workspace $ws6
+assign [app_id="^(evince|org.kde.okular|org.pwmt.zathura)$"] workspace $ws6
 
 ### Disposición
 bindsym $mod+v splith
