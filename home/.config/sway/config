@@ -125,6 +125,8 @@ assign [class="Spotify"] workspace $ws5
 assign [app_id="^libreoffice"] workspace $ws6
 assign [class="(?i)^(libreoffice|soffice)"] workspace $ws6
 assign [app_id="^(evince|org.kde.okular|org.pwmt.zathura)$"] workspace $ws6
+assign [app_id="(?i)^zotero$"] workspace $ws6
+assign [class="(?i)^zotero$"] workspace $ws6
 
 ### Disposición
 bindsym $mod+v splith
@@ -164,6 +166,9 @@ for_window [window_role="dialog"] floating enable
 for_window [app_id="betterbird" title="^Write:"] floating enable, resize set 900 700, move position center
 for_window [title="^Text Import"] floating enable, resize set 900 700, move position center
 for_window [window_type="dialog"] floating enable
+# for_window [app_id="Zotero" title="Progress"] floating enable, move position 90 ppt 0 ppt
+for_window [app_id="Zotero" title="Progress"] floating enable, resize set width 15 ppt height 7 ppt, move position 80 ppt 2 ppt
+for_window [app_id="Zotero" title="^(Zotero Settings|Plugins Manager)"] floating enable, move position center
 
 ### Multimedia (volumen con wpctl/pactl, brillo con brightnessctl)
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
